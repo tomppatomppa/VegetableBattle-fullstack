@@ -20,9 +20,7 @@ export const calculateStats = ({
 
 export const fightHandler = (attacker, defender) => {
   const deduct = attack(attacker.Attack)
-
   const health = defender.Health - deduct
-
   console.log(
     `${attacker.Name} hits ${defender.Name} for ${deduct} damage, ${defender.Name} has ${health} health left`
   )
@@ -30,7 +28,6 @@ export const fightHandler = (attacker, defender) => {
     ...defender,
     Health: health,
   }
-
   return updatedDefender
 }
 

@@ -25,7 +25,7 @@ const Game = ({ game }) => {
     }
   }, [game.player1])
 
-  return <div></div>
+  return <div>{Math.floor((Date.now() - game.startDate) / 1000)}</div>
 }
 
 export default Game

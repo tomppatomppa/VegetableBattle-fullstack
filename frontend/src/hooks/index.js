@@ -6,7 +6,7 @@ export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
   const [player2, setPlayer2] = useState(null)
-
+  const [startDate, setStartDate] = useState(null)
   /*
   # check if game ended 
   # [player1 & player2] as dependency
@@ -24,6 +24,7 @@ export const useGameState = () => {
       console.log('Choose Both players')
       return
     }
+    setStartDate(Date.now())
     setIsOn(true)
   }
 
@@ -50,5 +51,6 @@ export const useGameState = () => {
     reset,
     player1Handler,
     player2Handler,
+    startDate,
   }
 }
