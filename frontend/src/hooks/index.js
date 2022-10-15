@@ -7,13 +7,17 @@ export const useGameState = () => {
   const [player1, setPlayer1] = useState(null)
   const [player2, setPlayer2] = useState(null)
 
+  /*
+  # check if game ended 
+  # [player1 & player2] as dependency
+   */
   useEffect(() => {
     if (player1 && player2) {
       if (isFinished(player1, player2)) {
-        setIsOn(false)
+        reset()
       }
     }
-  }, [turn])
+  }, [player1, player2])
 
   const handleStart = () => {
     if (!player1 || !player2) {
@@ -24,17 +28,15 @@ export const useGameState = () => {
   }
 
   const reset = () => {
-    setIsOn(false)
     setPlayer1(null)
     setPlayer2(null)
+    setIsOn(false)
   }
-  const fight = () => {
-    if (turn % 2 == 0) {
-      setPlayer2(fightHandler(player1, player2))
-    } else {
-      setPlayer1(fightHandler(player2, player1))
-    }
-    setTurn(turn + 1)
+  const player1Handler = () => {
+    setPlayer2(() => fightHandler(player1, player2))
+  }
+  const player2Handler = () => {
+    setPlayer1(() => fightHandler(player2, player1))
   }
 
   return {
@@ -46,6 +48,7 @@ export const useGameState = () => {
     setPlayer2,
     handleStart,
     reset,
-    fight,
+    player1Handler,
+    player2Handler,
   }
 }

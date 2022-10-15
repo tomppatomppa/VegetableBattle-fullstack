@@ -19,10 +19,16 @@ export const calculateStats = ({
 }
 
 export const fightHandler = (attacker, defender) => {
-  const health = defender.Health - attack(attacker.Attack)
+  const deduct = attack(attacker.Attack)
+
+  const health = defender.Health - deduct
+
+  console.log(
+    `${attacker.Name} hits ${defender.Name} for ${deduct} damage, ${defender.Name} has ${health} health left`
+  )
   const updatedDefender = {
     ...defender,
-    Health: health - 12,
+    Health: health,
   }
 
   return updatedDefender
@@ -35,7 +41,11 @@ const attack = (power) => {
 
 export const isFinished = (player1, player2) => {
   if (player1.Health <= 0 || player2.Health <= 0) {
+    const winner = player1.Health < player2.Health ? player2.Name : player1.Name
+    console.log(`Winner is ${winner}`)
+
     return true
   }
+
   return false
 }
