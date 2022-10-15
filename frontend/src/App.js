@@ -1,8 +1,6 @@
-import { useState } from 'react'
 import './App.css'
 import Game from './components/Game'
 import Vegetable from './components/Vegetable'
-
 import Vegetables from './components/Vegetables'
 import { useGameState } from './hooks'
 
@@ -22,7 +20,7 @@ function App() {
       ) : (
         <Vegetables select={game.setPlayer2} />
       )}
-      {game.isOn && <Game />}
+      {game.isOn && <Game game={game} />}
       <button onClick={game.reset}>reset players</button>
       <button onClick={game.handleStart}>start</button>
     </div>

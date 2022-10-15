@@ -1,5 +1,9 @@
-const Game = ({ player1, player2 }) => {
-  return <div>Game</div>
+const Game = ({ game }) => {
+  return (
+    <div>
+      <button onClick={game.fight}>fight</button>
+    </div>
+  )
 }
 
 export default Game
