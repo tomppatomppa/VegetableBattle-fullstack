@@ -27,7 +27,7 @@ const Vegetables = () => {
       <input onChange={(e) => setFilter(e.target.value)}></input>
       <div>
         {vegetables.map((item) => (
-          <Togglable buttonLabel="show stats" name={item.name.fi}>
+          <Togglable key={item.id} buttonLabel="show stats" name={item.name.fi}>
             <Vegetable data={item} />
           </Togglable>
         ))}
