@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { fightHandler, isFinished } from '../utils/helpers'
 
 export const useGameState = () => {
@@ -7,6 +7,14 @@ export const useGameState = () => {
   const [player1, setPlayer1] = useState(null)
   const [player2, setPlayer2] = useState(null)
 
+  useEffect(() => {
+    if (player1 && player2) {
+      if (isFinished(player1, player2)) {
+        setIsOn(false)
+      }
+    }
+  }, [turn])
+
   const handleStart = () => {
     if (!player1 || !player2) {
       console.log('Choose Both players')
@@ -14,10 +22,7 @@ export const useGameState = () => {
     }
     setIsOn(true)
   }
-  const handleFinish = () => {
-    console.log('game ended')
-    //reset()
-  }
+
   const reset = () => {
     setIsOn(false)
     setPlayer1(null)
@@ -29,12 +34,9 @@ export const useGameState = () => {
     } else {
       setPlayer1(fightHandler(player2, player1))
     }
-    if (isFinished(player1, player2)) {
-      handleFinish()
-    }
-
     setTurn(turn + 1)
   }
+
   return {
     isOn,
     setIsOn,
