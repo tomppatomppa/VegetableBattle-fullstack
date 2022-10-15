@@ -15,6 +15,5 @@ export const calculateStats = ({
     Defence: parse(protein),
     Delay: parse(fat + carbohydrate + protein),
   }
-  // console.log(stats)
   return stats
 }

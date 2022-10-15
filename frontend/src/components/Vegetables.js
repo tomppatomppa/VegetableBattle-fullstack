@@ -1,15 +1,15 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import { calculateStats } from '../utils/helpers'
 import Togglable from './Togglable'
 
 import Vegetable from './Vegetable'
 
-const Vegetables = () => {
+const Vegetables = ({ select }) => {
   const [vegetables, setVegetables] = useState([])
   const [filter, setFilter] = useState('')
 
   useEffect(() => {
-    console.log(filter)
     const search = async () => {
       const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`
       axios.get(url).then(({ data }) => {
@@ -26,9 +26,13 @@ const Vegetables = () => {
     <div>
       <input onChange={(e) => setFilter(e.target.value)}></input>
       <div>
-        {vegetables.map((item) => (
-          <Togglable key={item.id} buttonLabel="show stats" name={item.name.fi}>
-            <Vegetable data={item} />
+        {vegetables.map((vegetable) => (
+          <Togglable
+            key={vegetable.id}
+            buttonLabel="show stats"
+            name={vegetable.name.fi}
+          >
+            <Vegetable data={calculateStats(vegetable)} select={select} />
           </Togglable>
         ))}
       </div>
