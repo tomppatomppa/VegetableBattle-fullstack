@@ -4,39 +4,27 @@ import Game from './components/Game'
 import Vegetable from './components/Vegetable'
 
 import Vegetables from './components/Vegetables'
+import { useGameState } from './hooks'
 
 function App() {
-  const [isOn, setIsOn] = useState(false)
-  const [player1, setPlayer1] = useState(null)
-  const [player2, setPlayer2] = useState(null)
+  const game = useGameState()
 
-  const handleStart = () => {
-    if (!player1 || !player2) {
-      console.log('Choose Both players')
-      return
-    }
-    setIsOn(true)
-  }
-  const reset = () => {
-    setPlayer1(null)
-    setPlayer2(null)
-  }
   return (
     <div className="App">
       Vihannes battle
-      {player1 ? (
-        <Vegetable data={player1} />
+      {game.player1 ? (
+        <Vegetable data={game.player1} />
       ) : (
-        <Vegetables select={setPlayer1} />
+        <Vegetables select={game.setPlayer1} />
       )}
-      {player2 ? (
-        <Vegetable data={player2} />
+      {game.player2 ? (
+        <Vegetable data={game.player2} />
       ) : (
-        <Vegetables select={setPlayer2} />
+        <Vegetables select={game.setPlayer2} />
       )}
-      {isOn && <Game />}
-      <button onClick={reset}>reset players</button>
-      <button onClick={handleStart}>start</button>
+      {game.isOn && <Game />}
+      <button onClick={game.reset}>reset players</button>
+      <button onClick={game.handleStart}>start</button>
     </div>
   )
 }
