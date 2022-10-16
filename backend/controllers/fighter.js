@@ -30,6 +30,7 @@ router.post('/', async (request, response) => {
 router.put('/', async (request, response) => {
   const { name, wins, ties, status } = request.body
   let updateScore
+
   if (wins || ties) {
     updateScore = wins ? 'wins' : ties ? 'ties' : 'losses'
   }
@@ -42,7 +43,6 @@ router.put('/', async (request, response) => {
       context: 'query',
     }
   )
-
   response.json(fighter)
 })
 module.exports = router

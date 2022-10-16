@@ -1,30 +1,23 @@
+import { useEffect, useState } from 'react'
 import Togglable from './Togglable'
-const dummy = [
-  {
-    id: 1,
-    name: 'Tomaatti',
-    wins: 1,
-    ties: 0,
-    losses: 2,
-    status: ['IDLE', 'STANDBY', 'ACTIVE'],
-  },
-  {
-    id: 2,
-    name: 'Paprika',
-    wins: 3,
-    ties: 0,
-    losses: 1,
-    status: ['IDLE', 'STANDBY', 'ACTIVE'],
-  },
-]
+
+import fighterService from '../services/fighters'
+
 const Higscores = () => {
+  const [highscores, setHighscores] = useState([])
+  useEffect(() => {
+    fighterService.getAll().then((players) => {
+      setHighscores(players)
+    })
+  }, [])
   return (
     <div>
       <h1>Highscores</h1>
-      {dummy.map((item) => (
+      {highscores.map((item) => (
         <div key={item.id}>
           <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
             {item.name} {'Battles Won'} {item.wins}
+            {item.status}
           </Togglable>
         </div>
       ))}
