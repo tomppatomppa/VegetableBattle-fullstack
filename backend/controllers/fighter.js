@@ -26,4 +26,23 @@ router.post('/', async (request, response) => {
   const savedFighter = await fighter.save()
   response.status(201).json(savedFighter)
 })
+
+router.put('/', async (request, response) => {
+  const { name, wins, ties, status } = request.body
+  let updateScore
+  if (wins || ties) {
+    updateScore = wins ? 'wins' : ties ? 'ties' : 'losses'
+  }
+  const fighter = await Fighter.findOneAndUpdate(
+    name,
+    { $inc: { [updateScore]: 1 }, $set: { status: status } },
+    {
+      new: true,
+      runValidators: true,
+      context: 'query',
+    }
+  )
+
+  response.json(fighter)
+})
 module.exports = router
