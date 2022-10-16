@@ -9,11 +9,17 @@ router.get('/', async (request, response) => {
 
 router.post('/', async (request, response) => {
   const { name } = request.body
+  if (!name) {
+    return response.status(400).json({
+      error: 'invalid Username',
+    })
+  }
+  console.log(request.body)
 
   const existingFighter = await Fighter.findOne({ name })
   if (existingFighter) {
     return response.status(400).json({
-      error: 'Fighter must be unique',
+      error: 'Already Exists',
     })
   }
   const fighter = new Fighter({

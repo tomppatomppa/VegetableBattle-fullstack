@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import Togglable from './Togglable'
-
 import fighterService from '../services/fighters'
 
 const Higscores = () => {
@@ -17,7 +16,6 @@ const Higscores = () => {
         <div key={item.id}>
           <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
             {item.name} {'Battles Won'} {item.wins}
-            {item.status}
           </Togglable>
         </div>
       ))}
