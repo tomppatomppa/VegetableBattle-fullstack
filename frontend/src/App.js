@@ -1,5 +1,6 @@
 import './App.css'
 import Game from './components/Game'
+import Higscores from './components/Higscores'
 import Vegetable from './components/Vegetable'
 import Vegetables from './components/Vegetables'
 import { useGameState } from './hooks'
@@ -23,6 +24,7 @@ function App() {
       {game.isOn && <Game game={game} />}
       <button onClick={game.reset}>reset players</button>
       <button onClick={game.handleStart}>start</button>
+      <Higscores />
     </div>
   )
 }

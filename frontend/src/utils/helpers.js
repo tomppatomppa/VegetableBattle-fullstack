@@ -49,7 +49,6 @@ const attack = (power) => {
 const defence = (value) => {
   return (value * 3).toFixed(0)
 }
-
 export const isFinished = (player1, player2) => {
   if (player1.Health <= 0 || player2.Health <= 0) {
     const winner = player1.Health < player2.Health ? player2.Name : player1.Name
@@ -58,7 +57,6 @@ export const isFinished = (player1, player2) => {
   }
   return false
 }
-
 export const msToTime = (milliseconds) => {
   const pad = (n, z) => {
     z = z || 2

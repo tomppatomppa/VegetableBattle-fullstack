@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { fightHandler, isFinished, msToTime } from '../utils/helpers'
+import { fightHandler, isFinished } from '../utils/helpers'
 
 export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
