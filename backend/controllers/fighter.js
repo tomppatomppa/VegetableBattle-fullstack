@@ -1,6 +1,12 @@
 const router = require('express').Router()
 const Fighter = require('../models/Fighter')
 
+router.get('/', async (request, response) => {
+  const fighters = await Fighter.find({})
+
+  response.json(fighters)
+})
+
 router.post('/', async (request, response) => {
   const { name } = request.body
 
