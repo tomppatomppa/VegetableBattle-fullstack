@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react'
-import { fightHandler, isFinished } from '../utils/helpers'
+import { fightHandler, isFinished, msToTime } from '../utils/helpers'
 
 export const useGameState = () => {
-  const [turn, setTurn] = useState(1)
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
   const [player2, setPlayer2] = useState(null)
@@ -34,10 +33,10 @@ export const useGameState = () => {
     setIsOn(false)
   }
   const player1Handler = () => {
-    setPlayer2(() => fightHandler(player1, player2))
+    setPlayer2(() => fightHandler(player1, player2, startDate))
   }
   const player2Handler = () => {
-    setPlayer1(() => fightHandler(player2, player1))
+    setPlayer1(() => fightHandler(player2, player1, startDate))
   }
 
   return {

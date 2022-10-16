@@ -18,12 +18,20 @@ export const calculateStats = ({
   return stats
 }
 
-export const fightHandler = (attacker, defender) => {
-  const deduct = attack(attacker.Attack)
-  const health = defender.Health - deduct
-  console.log(
-    `${attacker.Name} hits ${defender.Name} for ${deduct} damage, ${defender.Name} has ${health} health left`
-  )
+export const fightHandler = (attacker, defender, date) => {
+  const deductFromHealth = attack(attacker.Attack) - defence(defender.Defence)
+  let health = defender.Health - deductFromHealth.toFixed(0)
+  if (deductFromHealth <= 0) {
+    console.log('Avoided')
+  } else {
+    console.log(
+      `${msToTime(Date.now() - date)} : ${attacker.Name} hits ${
+        defender.Name
+      } for ${deductFromHealth} damage, ${
+        defender.Name
+      } has ${health} health left`
+    )
+  }
   const updatedDefender = {
     ...defender,
     Health: health,
@@ -31,18 +39,36 @@ export const fightHandler = (attacker, defender) => {
   return updatedDefender
 }
 
+const percentage = (value, totalValue) => {
+  return (100 * value) / totalValue
+}
 const attack = (power) => {
   const ran = Math.floor(Math.random() * power) + power / 3
-  return ((ran * 1.5) / 3).toFixed(0)
+  return ((ran * 3) / 2).toFixed(0)
+}
+const defence = (value) => {
+  return (value * 3).toFixed(0)
 }
 
 export const isFinished = (player1, player2) => {
   if (player1.Health <= 0 || player2.Health <= 0) {
     const winner = player1.Health < player2.Health ? player2.Name : player1.Name
     console.log(`Winner is ${winner}`)
-
     return true
   }
-
   return false
+}
+
+export const msToTime = (milliseconds) => {
+  const pad = (n, z) => {
+    z = z || 2
+    return ('00' + n).slice(-z)
+  }
+  let ms = milliseconds % 1000
+  milliseconds = (milliseconds - ms) / 1000
+  let secs = milliseconds % 60
+  milliseconds = (milliseconds - secs) / 60
+  let mins = milliseconds % 60
+  //let hrs = (milliseconds - mins) / 60
+  return pad(mins) + ':' + pad(secs) + ':' + pad(ms, 2)
 }

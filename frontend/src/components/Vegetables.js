@@ -2,7 +2,6 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { calculateStats } from '../utils/helpers'
 import Togglable from './Togglable'
-
 import Vegetable from './Vegetable'
 
 const Vegetables = ({ select }) => {
