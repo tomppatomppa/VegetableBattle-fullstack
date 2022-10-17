@@ -1,8 +1,9 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Vegetable from './Vegetable'
 const Game = ({ game }) => {
   const status = useSelector((state) => state.status)
+
   useEffect(() => {
     let player1Timer = null
     if (game.isOn) {
@@ -32,7 +33,9 @@ const Game = ({ game }) => {
       <Vegetable data={game.player1} />
       <Vegetable data={game.player2} />
       {status.slice(-4).map((item) => (
-        <h6 key={item}>{item}</h6>
+        <h6 style={{ margin: 0 }} key={item}>
+          {item}
+        </h6>
       ))}
     </div>
   )
