@@ -5,6 +5,8 @@ import { initializeHighscores } from '../reducers/highscoreReducer'
 
 const Higscores = () => {
   const highscores = useSelector((state) => state.highscores)
+  const sorted = [...highscores].sort((a, b) => b.wins - a.wins)
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -14,7 +16,7 @@ const Higscores = () => {
   return (
     <div>
       <h1>Highscores</h1>
-      {highscores.map((item) => (
+      {sorted.map((item) => (
         <div key={item.id}>
           <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
             {item.name} {'Battles Won: '} {item.wins}
