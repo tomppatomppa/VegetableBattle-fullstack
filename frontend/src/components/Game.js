@@ -25,7 +25,7 @@ const Game = ({ game }) => {
       clearTimeout(player2Timer)
     }
   }, [game.player1])
-
+  console.log(status)
   return (
     <div>
       {status.slice(-4).map((item) => (

@@ -1,4 +1,3 @@
-import { useDispatch, useSelector } from 'react-redux'
 import './App.css'
 import Game from './components/Game'
 import Higscores from './components/Higscores'
@@ -9,8 +8,6 @@ import { useGameState } from './hooks'
 
 function App() {
   const game = useGameState()
-
-  const status = useSelector((state) => state.status)
 
   return (
     <div className="App">
@@ -27,11 +24,6 @@ function App() {
         <Vegetables select={game.addPlayer} />
       )}
       {game.isOn && <Game game={game} />}
-      <div>
-        {status.slice(-4).map((item) => (
-          <h6 key={item}>{item}</h6>
-        ))}
-      </div>
       <button onClick={game.reset}>reset players</button>
       <button onClick={game.handleStart}>start</button>
       <Higscores />

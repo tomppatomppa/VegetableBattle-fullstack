@@ -35,9 +35,7 @@ export const useGameState = () => {
   }, [player1, player2])
 
   const saveResult = async (winner, loser) => {
-    //const message = `Winner is ${winner}`
     dispatch(createStatus(`Winner is ${winner}`))
-    // dispatch(createNotification({ message: message, type: 'info' }, 10))
     dispatch(updateHighscore({ name: winner, wins: true }))
     dispatch(updateHighscore({ name: loser, wins: false }))
   }
@@ -52,6 +50,7 @@ export const useGameState = () => {
   const reset = () => {
     setPlayer1(null)
     setPlayer2(null)
+    setStartDate(null)
     setIsOn(false)
   }
   const addPlayer = (player) => {
@@ -64,7 +63,6 @@ export const useGameState = () => {
     }
     return true
   }
-
   const fight = (attacker, defender) => {
     const hit = attack(attacker.Attack) - defence(defender.Defence)
     let health = defender.Health - hit
