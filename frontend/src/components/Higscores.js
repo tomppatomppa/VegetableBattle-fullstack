@@ -1,14 +1,16 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import Togglable from './Togglable'
-import fighterService from '../services/fighters'
+import { initializeHighscores } from '../reducers/highscoreReducer'
 
 const Higscores = () => {
-  const [highscores, setHighscores] = useState([])
+  const highscores = useSelector((state) => state.highscores)
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    fighterService.getAll().then((players) => {
-      setHighscores(players)
-    })
-  }, [])
+    dispatch(initializeHighscores())
+  }, [dispatch])
+
   return (
     <div>
       <h1>Highscores</h1>

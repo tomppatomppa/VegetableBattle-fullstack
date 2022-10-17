@@ -1,19 +1,23 @@
-import vegetableService from '../services/fighters'
-
+import { createHighscore } from '../reducers/highscoreReducer'
+import { useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 const Vegetable = ({ data, select }) => {
+  const highscores = useSelector((state) => state.highscores)
+  const dispatch = useDispatch()
+  const found = [...highscores].find(
+    (vegetable) => vegetable.name === data.Name
+  )
+  console.log(found)
   /*
   Add vegetable if it doesn't exists in database
   */
   const handleSelect = async (data) => {
     select(data)
-    vegetableService
-      .create({ name: data.Name })
-      .then((createdVegetable) => {
-        console.log(createdVegetable.Name, 'created')
-      })
-      .catch((error) => {
-        console.log(error.message)
-      })
+    if (!found) {
+      dispatch(createHighscore(data.Name))
+    } else {
+      console.log('already in db')
+    }
   }
 
   return (
