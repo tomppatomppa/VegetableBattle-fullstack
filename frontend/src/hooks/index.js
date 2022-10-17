@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
-import { countdown, fightHandler, isFinished } from '../utils/helpers'
+import {
+  attack,
+  countdown,
+  defence,
+  fightHandler,
+  isFinished,
+  msToTime,
+} from '../utils/helpers'
 import { useDispatch } from 'react-redux'
 import { updateHighscore } from '../reducers/highscoreReducer'
 import { createNotification } from '../reducers/notificationReducer'
@@ -53,13 +60,30 @@ export const useGameState = () => {
     }
     return true
   }
-  const player1Handler = () => {
-    setPlayer2(() => fightHandler(player1, player2, startDate))
-  }
-  const player2Handler = () => {
-    setPlayer1(() => fightHandler(player2, player1, startDate))
+
+  const fight = (attacker, defender) => {
+    const hit = attack(attacker.Attack) - defence(defender.Defence)
+    let health = defender.Health - hit
+    const updatedPlayer = {
+      ...defender,
+      Health: health,
+    }
+    if (attacker.Name === player1.Name) {
+      setPlayer2(() => updatedPlayer)
+    } else {
+      setPlayer1(() => updatedPlayer)
+    }
+
+    statusUpdate(attacker, defender, hit, health)
   }
 
+  const statusUpdate = (attacker, defender, hit, health) => {
+    console.log(
+      `${msToTime(Date.now() - startDate)} : ${attacker.Name} hits ${
+        defender.Name
+      } for ${hit} damage, ${defender.Name} has ${health} health left`
+    )
+  }
   return {
     isOn,
     setIsOn,
@@ -67,9 +91,9 @@ export const useGameState = () => {
     player2,
     handleStart,
     reset,
-    player1Handler,
-    player2Handler,
+
     startDate,
     addPlayer,
+    fight,
   }
 }

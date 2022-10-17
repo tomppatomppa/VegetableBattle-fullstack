@@ -5,15 +5,10 @@ import Notification from './components/Notification'
 import Vegetable from './components/Vegetable'
 import Vegetables from './components/Vegetables'
 import { useGameState } from './hooks'
-import { useDispatch } from 'react-redux'
-import { updateHighscore } from './reducers/highscoreReducer'
+
 function App() {
   const game = useGameState()
-  const dispatch = useDispatch()
 
-  const test = () => {
-    dispatch(updateHighscore({ name: 'Tomaatti', wins: false }))
-  }
   return (
     <div className="App">
       Vihannes battle
@@ -32,7 +27,6 @@ function App() {
       <button onClick={game.reset}>reset players</button>
       <button onClick={game.handleStart}>start</button>
       <Higscores />
-      <button onClick={test}>test</button>
     </div>
   )
 }

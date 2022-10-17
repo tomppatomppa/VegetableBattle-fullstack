@@ -1,7 +1,3 @@
-import vegetableService from '../services/fighters'
-import { useDispatch } from 'react-redux'
-import { updateHighscore } from '../reducers/highscoreReducer'
-
 export const calculateStats = ({
   name,
   energyKcal,
@@ -22,35 +18,12 @@ export const calculateStats = ({
   return stats
 }
 
-export const fightHandler = (attacker, defender, date) => {
-  const deductFromHealth = attack(attacker.Attack) - defence(defender.Defence)
-  let health = defender.Health - deductFromHealth.toFixed(0)
-  if (deductFromHealth <= 0) {
-    console.log('Avoided')
-  } else {
-    console.log(
-      `${msToTime(Date.now() - date)} : ${attacker.Name} hits ${
-        defender.Name
-      } for ${deductFromHealth} damage, ${
-        defender.Name
-      } has ${health} health left`
-    )
-  }
-  const updatedDefender = {
-    ...defender,
-    Health: health,
-  }
-  return updatedDefender
-}
-
-const percentage = (value, totalValue) => {
-  return (100 * value) / totalValue
-}
-const attack = (power) => {
+export const attack = (power) => {
   const ran = Math.floor(Math.random() * power) + power / 3
-  return ((ran * 3) / 2).toFixed(0)
+  const damage = ((ran * 3) / 2).toFixed(0)
+  return damage > 0 ? damage : 1
 }
-const defence = (value) => {
+export const defence = (value) => {
   return (value * 3).toFixed(0)
 }
 export const isFinished = (player1, player2) => {
@@ -59,6 +32,7 @@ export const isFinished = (player1, player2) => {
   }
   return false
 }
+
 export const msToTime = (milliseconds) => {
   const pad = (n, z) => {
     z = z || 2
