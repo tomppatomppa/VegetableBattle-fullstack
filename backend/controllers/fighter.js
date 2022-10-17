@@ -14,8 +14,6 @@ router.post('/', async (request, response) => {
       error: 'invalid Username',
     })
   }
-  console.log(request.body)
-
   const existingFighter = await Fighter.findOne({ name })
   if (existingFighter) {
     return response.status(400).json({
