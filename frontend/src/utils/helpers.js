@@ -60,9 +60,7 @@ export const isFinished = (player1, player2) => {
   if (player1.Health <= 0 || player2.Health <= 0) {
     const winner = player1.Health < player2.Health ? player2.Name : player1.Name
     const loser = player1.Name === winner ? player2.Name : player1.Name
-
     saveResult(winner, loser)
-
     return true
   }
   return false
