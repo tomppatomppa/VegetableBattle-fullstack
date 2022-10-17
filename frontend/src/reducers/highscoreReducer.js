@@ -5,6 +5,10 @@ const highscoreSlice = createSlice({
   name: 'highscores',
   initialState: [],
   reducers: {
+    setHighscore(state, action) {
+      const highscore = action.payload
+      return state.map((h) => (h.name === highscore.name ? highscore : h))
+    },
     setHighscores(state, action) {
       return action.payload
     },
@@ -13,7 +17,15 @@ const highscoreSlice = createSlice({
     },
   },
 })
-export const { setHighscores, appendHighscore } = highscoreSlice.actions
+export const { setHighscores, appendHighscore, setHighscore } =
+  highscoreSlice.actions
+
+export const updateHighscore = (highscore) => {
+  return async (dispatch) => {
+    const updatedAnecdote = await vegetableService.updateStats(highscore)
+    dispatch(setHighscore(updatedAnecdote))
+  }
+}
 
 export const createHighscore = (newHighscore) => {
   return async (dispatch) => {

@@ -1,4 +1,6 @@
 import vegetableService from '../services/fighters'
+import { useDispatch } from 'react-redux'
+import { updateHighscore } from '../reducers/highscoreReducer'
 
 export const calculateStats = ({
   name,
@@ -52,15 +54,7 @@ const defence = (value) => {
   return (value * 3).toFixed(0)
 }
 export const isFinished = (player1, player2) => {
-  const saveResult = async (winner, loser) => {
-    console.log(`Winner is ${winner}`)
-    await vegetableService.updateStats({ name: winner, wins: true })
-    await vegetableService.updateStats({ name: loser, wins: false })
-  }
   if (player1.Health <= 0 || player2.Health <= 0) {
-    const winner = player1.Health < player2.Health ? player2.Name : player1.Name
-    const loser = player1.Name === winner ? player2.Name : player1.Name
-    saveResult(winner, loser)
     return true
   }
   return false
