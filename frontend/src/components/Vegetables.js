@@ -18,7 +18,9 @@ const Vegetables = ({ select }) => {
         setVegetables([...filter])
       })
     }
-    if (filter) search()
+    if (filter) {
+      search()
+    }
   }, [filter])
 
   return (

@@ -70,3 +70,18 @@ export const msToTime = (milliseconds) => {
   //let hrs = (milliseconds - mins) / 60
   return pad(mins) + ':' + pad(secs) + ':' + pad(ms, 2)
 }
+
+export const countdown = (count, triggerStart, setStartDate) => {
+  let timeLeft = count + 1
+  let timer = setInterval(() => {
+    if (timeLeft <= 1) {
+      clearInterval(timer)
+      triggerStart(true)
+      setStartDate(Date.now())
+    } else {
+      timeLeft--
+      console.log(timeLeft)
+      return timeLeft
+    }
+  }, 1000)
+}

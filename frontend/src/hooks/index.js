@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
-import { fightHandler, isFinished } from '../utils/helpers'
+import { countdown, fightHandler, isFinished } from '../utils/helpers'
 import fighterService from '../services/fighters'
+
 export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
@@ -38,13 +39,19 @@ export const useGameState = () => {
       console.log('Choose Both players')
       return
     }
-    setStartDate(Date.now())
-    setIsOn(true)
+    countdown(3, setIsOn, setStartDate)
   }
   const reset = () => {
     setPlayer1(null)
     setPlayer2(null)
     setIsOn(false)
+  }
+  const addPlayer = (player) => {
+    if (!player1) {
+      setPlayer1(player)
+    } else {
+      setPlayer2(player)
+    }
   }
   const player1Handler = () => {
     setPlayer2(() => fightHandler(player1, player2, startDate))
@@ -57,13 +64,12 @@ export const useGameState = () => {
     isOn,
     setIsOn,
     player1,
-    setPlayer1,
     player2,
-    setPlayer2,
     handleStart,
     reset,
     player1Handler,
     player2Handler,
     startDate,
+    addPlayer,
   }
 }
