@@ -1,6 +1,7 @@
 import './App.css'
 import Game from './components/Game'
 import Higscores from './components/Higscores'
+import Notification from './components/Notification'
 import Vegetable from './components/Vegetable'
 import Vegetables from './components/Vegetables'
 import { useGameState } from './hooks'
@@ -11,6 +12,7 @@ function App() {
   return (
     <div className="App">
       Vihannes battle
+      <Notification />
       {game.player1 ? (
         <Vegetable data={game.player1} />
       ) : (

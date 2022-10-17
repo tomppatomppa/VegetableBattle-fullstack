@@ -1,23 +1,32 @@
 import { createHighscore } from '../reducers/highscoreReducer'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
+import { createNotification } from '../reducers/notificationReducer'
+
 const Vegetable = ({ data, select }) => {
   const highscores = useSelector((state) => state.highscores)
   const dispatch = useDispatch()
+
   const found = [...highscores].find(
     (vegetable) => vegetable.name === data.Name
   )
-  console.log(found)
+
+  const notify = (message, type = 'info') => {
+    dispatch(createNotification({ message, type }, 4))
+  }
   /*
   Add vegetable if it doesn't exists in database
   */
   const handleSelect = async (data) => {
-    select(data)
+    //return false if dublicate player
+    if (!select(data)) {
+      notify('Cannot fight yourself', 'alert')
+      return
+    }
     if (!found) {
       dispatch(createHighscore(data.Name))
-    } else {
-      console.log('already in db')
     }
+    notify(`Vegetable name ${data.Name} joined!`)
   }
 
   return (

@@ -33,9 +33,12 @@ export const useGameState = () => {
   const addPlayer = (player) => {
     if (!player1) {
       setPlayer1(player)
+    } else if (player.Name === player1.Name) {
+      return false
     } else {
       setPlayer2(player)
     }
+    return true
   }
   const player1Handler = () => {
     setPlayer2(() => fightHandler(player1, player2, startDate))
