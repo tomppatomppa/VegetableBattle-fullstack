@@ -4,7 +4,9 @@ import Togglable from './Togglable'
 import { initializeHighscores } from '../reducers/highscoreReducer'
 
 const Higscores = () => {
-  const highscores = useSelector((state) => state.highscores)
+  const highscores = useSelector((state) =>
+    state.highscores.filter((h) => h.wins || h.losses !== 0)
+  )
   const sorted = [...highscores].sort((a, b) => b.wins - a.wins)
 
   const dispatch = useDispatch()
