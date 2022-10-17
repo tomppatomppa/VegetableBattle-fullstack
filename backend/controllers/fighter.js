@@ -34,14 +34,16 @@ router.post('/', async (request, response) => {
 })
 
 router.put('/', async (request, response) => {
-  const { name, wins, ties, status } = request.body
+  const { name, wins, status } = request.body
   let updateScore
 
-  if (wins || ties) {
-    updateScore = wins ? 'wins' : ties ? 'ties' : 'losses'
+  if (wins) {
+    updateScore = 'wins'
+  } else if (!wins) {
+    updateScore = 'losses'
   }
   const fighter = await Fighter.findOneAndUpdate(
-    name,
+    { name },
     { $inc: { [updateScore]: 1 }, $set: { status: status } },
     {
       new: true,

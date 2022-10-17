@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { fightHandler, isFinished } from '../utils/helpers'
-
+import fighterService from '../services/fighters'
 export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
@@ -13,6 +13,21 @@ export const useGameState = () => {
   useEffect(() => {
     if (player1 && player2) {
       if (isFinished(player1, player2)) {
+        //fix this
+        const winner =
+          player1.Health > player2.Health ? player1.Name : player2.Name
+        const loser =
+          player1.Health > player2.Health ? player2.Name : player1.Name
+        fighterService
+          .updateStats({ name: winner, wins: true })
+          .then((response) => {
+            console.log(response.data)
+          })
+        fighterService
+          .updateStats({ name: loser, wins: false })
+          .then((response) => {
+            console.log(response.data)
+          })
         reset()
       }
     }
@@ -26,7 +41,6 @@ export const useGameState = () => {
     setStartDate(Date.now())
     setIsOn(true)
   }
-
   const reset = () => {
     setPlayer1(null)
     setPlayer2(null)

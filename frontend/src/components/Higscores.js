@@ -15,7 +15,8 @@ const Higscores = () => {
       {highscores.map((item) => (
         <div key={item.id}>
           <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
-            {item.name} {'Battles Won'} {item.wins}
+            {item.name} {'Battles Won: '} {item.wins}
+            {'Battles Lost: '} {item.losses}
           </Togglable>
         </div>
       ))}

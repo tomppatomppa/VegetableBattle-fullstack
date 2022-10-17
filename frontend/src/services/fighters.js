@@ -11,4 +11,9 @@ const create = async (newObject) => {
   const response = await axios.post(baseUrl, newObject)
   return response.data
 }
-export default { getAll, create }
+
+const updateStats = async (data) => {
+  const response = await axios.put(baseUrl, data)
+  return response.data
+}
+export default { getAll, create, updateStats }

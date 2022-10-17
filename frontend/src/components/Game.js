@@ -25,7 +25,7 @@ const Game = ({ game }) => {
     }
   }, [game.player1])
 
-  return <div>{'empty'}</div>
+  return <div></div>
 }
 
 export default Game
