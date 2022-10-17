@@ -2,10 +2,20 @@ import { createHighscore } from '../reducers/highscoreReducer'
 import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { createNotification } from '../reducers/notificationReducer'
+import { useEffect, useState } from 'react'
 
 const Vegetable = ({ data, select }) => {
   const highscores = useSelector((state) => state.highscores)
+  const [color, setColor] = useState('')
+
   const dispatch = useDispatch()
+
+  useEffect(() => {
+    setColor('red')
+    setTimeout(() => {
+      setColor('')
+    }, 200)
+  }, [data])
 
   if (!data) {
     return null
@@ -39,7 +49,9 @@ const Vegetable = ({ data, select }) => {
           Name: {data.Name}{' '}
           {select && <button onClick={() => handleSelect(data)}>select</button>}
         </li>
-        <li>Health: {data.Health}</li>
+        <li>
+          Health: <span style={{ background: color }}>{data.Health}</span>{' '}
+        </li>
         <li>Attack: {data.Attack}</li>
         <li>Defence: {data.Defence}</li>
         <li>Delay: {data.Delay}</li>
