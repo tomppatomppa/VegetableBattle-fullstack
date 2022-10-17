@@ -7,6 +7,9 @@ const Vegetable = ({ data, select }) => {
   const highscores = useSelector((state) => state.highscores)
   const dispatch = useDispatch()
 
+  if (!data) {
+    return null
+  }
   const found = [...highscores].find(
     (vegetable) => vegetable.name === data.Name
   )

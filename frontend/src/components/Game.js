@@ -1,10 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import Vegetable from './Vegetable'
 const Game = ({ game }) => {
   const status = useSelector((state) => state.status)
   useEffect(() => {
     let player1Timer = null
-    if (game.player1) {
+    if (game.isOn) {
       player1Timer = setTimeout(() => {
         game.fight(game.player1, game.player2)
       }, (1000 * game.player1.Delay) / 2)
@@ -12,11 +13,11 @@ const Game = ({ game }) => {
     return () => {
       clearTimeout(player1Timer)
     }
-  }, [game.player2])
+  }, [game.player2, game.isOn])
 
   useEffect(() => {
     let player2Timer = null
-    if (game.player2) {
+    if (game.isOn) {
       player2Timer = setTimeout(() => {
         game.fight(game.player2, game.player1)
       }, (1000 * game.player2.Delay) / 2)
@@ -24,10 +25,12 @@ const Game = ({ game }) => {
     return () => {
       clearTimeout(player2Timer)
     }
-  }, [game.player1])
-  console.log(status)
+  }, [game.player1, game.isOn])
+
   return (
     <div>
+      <Vegetable data={game.player1} />
+      <Vegetable data={game.player2} />
       {status.slice(-4).map((item) => (
         <h6 key={item}>{item}</h6>
       ))}

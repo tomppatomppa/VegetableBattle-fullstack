@@ -13,17 +13,9 @@ function App() {
     <div className="App">
       Vihannes battle
       <Notification />
-      {game.player1 ? (
-        <Vegetable data={game.player1} />
-      ) : (
-        <Vegetables select={game.addPlayer} />
-      )}
-      {game.player2 ? (
-        <Vegetable data={game.player2} />
-      ) : (
-        <Vegetables select={game.addPlayer} />
-      )}
-      {game.isOn && <Game game={game} />}
+      {game.player1 ? null : <Vegetables select={game.addPlayer} />}
+      {game.player2 ? null : <Vegetables select={game.addPlayer} />}
+      {<Game game={game} />}
       <button onClick={game.reset}>reset players</button>
       <button onClick={game.handleStart}>start</button>
       <Higscores />

@@ -1,15 +1,7 @@
 import { useEffect, useState } from 'react'
-import {
-  attack,
-  countdown,
-  defence,
-  fightHandler,
-  isFinished,
-  msToTime,
-} from '../utils/helpers'
+import { attack, defence, isFinished, msToTime } from '../utils/helpers'
 import { useDispatch } from 'react-redux'
 import { updateHighscore } from '../reducers/highscoreReducer'
-import { createNotification } from '../reducers/notificationReducer'
 import { createStatus, setStatusTo } from '../reducers/statusReducer'
 
 export const useGameState = () => {
@@ -85,6 +77,20 @@ export const useGameState = () => {
         } for ${hit} damage, ${defender.Name} has ${health} health left`
       )
     )
+  }
+  const countdown = (count) => {
+    let timeLeft = count + 1
+    let timer = setInterval(() => {
+      if (timeLeft <= 1) {
+        clearInterval(timer)
+        setIsOn(true)
+        setStartDate(Date.now())
+      } else {
+        timeLeft--
+        dispatch(createStatus(timeLeft))
+        return timeLeft
+      }
+    }, 1000)
   }
   return {
     isOn,
