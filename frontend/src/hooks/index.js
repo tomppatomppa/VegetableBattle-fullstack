@@ -10,6 +10,8 @@ import {
 import { useDispatch } from 'react-redux'
 import { updateHighscore } from '../reducers/highscoreReducer'
 import { createNotification } from '../reducers/notificationReducer'
+import { createStatus, setStatusTo } from '../reducers/statusReducer'
+
 export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
@@ -33,8 +35,9 @@ export const useGameState = () => {
   }, [player1, player2])
 
   const saveResult = async (winner, loser) => {
-    const message = `Winner is ${winner}`
-    dispatch(createNotification({ message: message, type: 'info' }, 10))
+    //const message = `Winner is ${winner}`
+    dispatch(createStatus(`Winner is ${winner}`))
+    // dispatch(createNotification({ message: message, type: 'info' }, 10))
     dispatch(updateHighscore({ name: winner, wins: true }))
     dispatch(updateHighscore({ name: loser, wins: false }))
   }
@@ -43,6 +46,7 @@ export const useGameState = () => {
       console.log('Choose Both players')
       return
     }
+    dispatch(setStatusTo([]))
     countdown(3, setIsOn, setStartDate)
   }
   const reset = () => {
@@ -73,15 +77,15 @@ export const useGameState = () => {
     } else {
       setPlayer1(() => updatedPlayer)
     }
-
     statusUpdate(attacker, defender, hit, health)
   }
-
   const statusUpdate = (attacker, defender, hit, health) => {
-    console.log(
-      `${msToTime(Date.now() - startDate)} : ${attacker.Name} hits ${
-        defender.Name
-      } for ${hit} damage, ${defender.Name} has ${health} health left`
+    dispatch(
+      createStatus(
+        `${msToTime(Date.now() - startDate)} : ${attacker.Name} hits ${
+          defender.Name
+        } for ${hit} damage, ${defender.Name} has ${health} health left`
+      )
     )
   }
   return {
@@ -91,7 +95,6 @@ export const useGameState = () => {
     player2,
     handleStart,
     reset,
-
     startDate,
     addPlayer,
     fight,
