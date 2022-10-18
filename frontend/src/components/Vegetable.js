@@ -9,18 +9,20 @@ import { AiFillHeart } from 'react-icons/ai'
 import { BsFillShieldFill } from 'react-icons/bs'
 import { GiAxeSwing } from 'react-icons/gi'
 
-const Vegetable = ({ data, select }) => {
+const Vegetable = ({ data, select, right }) => {
   const highscores = useSelector((state) => state.highscores)
-
   const [color, setColor] = useState('')
-
+  const [hitAnimation, setHitAnimation] = useState(false)
+  let animationDirection = right ? 'animate-wiggleLeft' : 'animate-wiggle'
   const dispatch = useDispatch()
 
   useEffect(() => {
     setColor('red')
+    setHitAnimation(true)
     setTimeout(() => {
       setColor('')
-    }, 200)
+      setHitAnimation(false)
+    }, 500)
   }, [data])
 
   if (!data) {
@@ -32,9 +34,7 @@ const Vegetable = ({ data, select }) => {
   const notify = (message, type = 'info') => {
     dispatch(createNotification({ message, type }, 4))
   }
-  /*
-  Add vegetable if it doesn't exists in database
-  */
+
   const handleSelect = async (data) => {
     //return false if dublicate player
     if (!select(data)) {
@@ -48,44 +48,53 @@ const Vegetable = ({ data, select }) => {
   }
 
   return (
-    <ul className="text-left">
-      <li className=" flex justify-end animate-pulse ">
+    <div>
+      <li className="flex animate-pulse ">
         {select && (
           <button className="btn " onClick={() => handleSelect(data)}>
             select
           </button>
         )}
       </li>
-      <div className="flex flex-col card">
-        <PowerIcon
-          icon={<AiFillHeart size="20" />}
-          text="Health"
-          value={data.Health}
-          color={color}
-        />
-        <PowerIcon
-          icon={<GiBroadsword size="20" />}
-          text="Attack"
-          value={data.Attack}
-        />
-        <PowerIcon
-          icon={<BsFillShieldFill size="20" />}
-          text="Defence"
-          value={data.Defence}
-        />
-        <PowerIcon
-          icon={<GiAxeSwing size="20" />}
-          text="Delay"
-          value={data.Delay}
-        />
+      <div className="flex">
+        <div className={`${right && 'order-last '} flex flex-col  card`}>
+          <PowerIcon
+            icon={<AiFillHeart size="20" />}
+            text="Health"
+            value={data.Health}
+            color={color}
+          />
+          <PowerIcon
+            icon={<GiBroadsword size="20" />}
+            text="Attack"
+            value={data.Attack}
+          />
+          <PowerIcon
+            icon={<BsFillShieldFill size="20" />}
+            text="Defence"
+            value={data.Defence}
+          />
+          <PowerIcon
+            icon={<GiAxeSwing size="20" />}
+            text="Delay"
+            value={data.Delay}
+          />
+        </div>
+        <div
+          className={`${
+            hitAnimation && animationDirection
+          } bg-green-200 mx-auto `}
+        >
+          <MovingIcon icon={<GiAxeSwing size="40" />} />
+        </div>
       </div>
-    </ul>
+    </div>
   )
 }
 const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   return (
     <div
-      className={`flex m-2 text-${color}-900 animate-${
+      className={`flex m-2 text-black animate-${
         color === 'red' ? 'ping' : 'none'
       }`}
     >
@@ -94,5 +103,8 @@ const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
       {value}
     </div>
   )
+}
+const MovingIcon = ({ icon }) => {
+  return <div className={` mt-20`}>{icon}</div>
 }
 export default Vegetable
