@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import Vegetable from './Vegetable'
+
 const Game = ({ game }) => {
   const status = useSelector((state) => state.status)
   const rev = [...status].reverse()
+
   useEffect(() => {
     let player1Timer = null
     if (game.isOn) {
@@ -39,7 +41,7 @@ const Game = ({ game }) => {
       <div className=" mx-auto justify-center max-w-lg">
         {rev.slice(0, 4).map((item, index) => (
           <h6
-            className={`text-sm ${index === 0 ? 'font-bold ' : ''}`}
+            className={`text-sm ${index === 0 ? 'font-bold text-lg' : ''}`}
             key={item}
           >
             {item}

@@ -10,8 +10,10 @@ function App() {
   const game = useGameState()
 
   return (
-    <div className={`App  bg-cover bg-hero p-4 flex flex-col justify-between`}>
-      <div className="h-screen mx-auto">
+    <div
+      className={`App font-mono bg-cover bg-hero p-4  flex flex-col justify-between`}
+    >
+      <div className="h-screen mt-12 mx-auto">
         <span className="font-bold ">Vihannes battle</span>
         <Notification />
         <div className="flex flex-row  justify-around">
