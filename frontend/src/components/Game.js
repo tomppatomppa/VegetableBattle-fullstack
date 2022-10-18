@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import Vegetable from './Vegetable'
 const Game = ({ game }) => {
   const status = useSelector((state) => state.status)
-
+  const rev = [...status].reverse()
   useEffect(() => {
     let player1Timer = null
     if (game.isOn) {
@@ -36,8 +36,8 @@ const Game = ({ game }) => {
         <Vegetable data={game.player1} />
         <Vegetable data={game.player2} />
       </div>
-      {status.slice(-4).map((item) => (
-        <h6 className="text-sm" key={item}>
+      {rev.slice(0, 4).map((item, index) => (
+        <h6 className={`text-sm ${index === 0 ? 'font-bold ' : ''}`} key={item}>
           {item}
         </h6>
       ))}

@@ -49,9 +49,9 @@ const Vegetable = ({ data, select }) => {
 
   return (
     <ul className="text-left">
-      <li className=" flex justify-end ">
+      <li className=" flex justify-end animate-pulse ">
         {select && (
-          <button className="btn" onClick={() => handleSelect(data)}>
+          <button className="btn " onClick={() => handleSelect(data)}>
             select
           </button>
         )}
@@ -84,10 +84,14 @@ const Vegetable = ({ data, select }) => {
 }
 const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   return (
-    <div className={`flex m-2 text-${color}-900`}>
+    <div
+      className={`flex m-2 text-${color}-900 animate-${
+        color === 'red' ? 'ping' : 'none'
+      }`}
+    >
       {icon}
-      {text}
-      <span> {`:  ${value}`}</span>
+      {`${text}:  `}
+      {value}
     </div>
   )
 }

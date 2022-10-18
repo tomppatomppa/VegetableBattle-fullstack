@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className="App flex flex-col justify-between bg-green-200">
-      <span className="font-bold">Vihannes battle</span>
+      <span className="font-bold ">Vihannes battle</span>
       <Notification />
       <div className="flex flex-row justify-around">
         <div>
@@ -20,7 +20,7 @@ function App() {
           {game.player2 ? null : <Vegetables select={game.addPlayer} />}
         </div>
       </div>
-      <div className="mt-24">{<Game game={game} />}</div>
+      <div className="mt-24 card">{<Game game={game} />}</div>
       <div>
         <button className="btn" onClick={game.reset}>
           reset players
@@ -29,7 +29,7 @@ function App() {
           start
         </button>
       </div>
-      {/* <Higscores /> */}
+      <Higscores />
     </div>
   )
 }
