@@ -10,11 +10,11 @@ function App() {
   const game = useGameState()
 
   return (
-    <div className={`App bg-cover bg-hero p-4 flex flex-col justify-between`}>
+    <div className={`App  bg-cover bg-hero p-4 flex flex-col justify-between`}>
       <div className="h-screen mx-auto">
         <span className="font-bold ">Vihannes battle</span>
         <Notification />
-        <div className="flex flex-row justify-around">
+        <div className="flex flex-row  justify-around">
           <div>
             {game.player1 ? null : <Vegetables select={game.addPlayer} />}
           </div>

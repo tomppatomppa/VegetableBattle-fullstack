@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+//https://wallpapercave.com/landscape-pixel-art-wallpapers bg image
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
