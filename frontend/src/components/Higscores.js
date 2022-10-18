@@ -16,16 +16,18 @@ const Higscores = () => {
   }, [dispatch])
 
   return (
-    <div>
-      <h1>Highscores</h1>
-      {sorted.map((item) => (
-        <div key={item.id}>
-          <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
-            {item.name} {'Battles Won: '} {item.wins}
-            {'Battles Lost: '} {item.losses}
-          </Togglable>
-        </div>
-      ))}
+    <div className="bg-red-200 mx-auto  w-1/3 ">
+      <h1 className="font-bold">Highscores</h1>
+      <div className="text-sm text-right bg-blue-100  ">
+        {sorted.map((item) => (
+          <div className="" key={item.id}>
+            <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
+              {item.name} {'Battles Won: '} {item.wins}
+              {'Battles Lost: '} {item.losses}
+            </Togglable>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }

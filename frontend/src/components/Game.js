@@ -31,8 +31,8 @@ const Game = ({ game }) => {
   return (
     <div>
       <div className="container mx-auto p-6 grid gap-12 grid-cols-2 ">
-        <span className="font-bold">{game.player1?.Name}</span>
-        <span className="font-bold ">{game.player2?.Name}</span>
+        <span className="font-bold">{game.player1?.Name.split(',', 1)}</span>
+        <span className="font-bold ">{game.player2?.Name.split(',', 1)}</span>
         <Vegetable data={game.player1} />
         <Vegetable data={game.player2} right={true} />
       </div>

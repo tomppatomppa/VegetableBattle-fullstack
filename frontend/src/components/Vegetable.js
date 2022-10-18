@@ -8,12 +8,14 @@ import { GiBroadsword } from 'react-icons/gi'
 import { AiFillHeart } from 'react-icons/ai'
 import { BsFillShieldFill } from 'react-icons/bs'
 import { GiAxeSwing } from 'react-icons/gi'
+import { GiWoodStick } from 'react-icons/gi'
 
 const Vegetable = ({ data, select, right }) => {
   const highscores = useSelector((state) => state.highscores)
   const [color, setColor] = useState('')
   const [hitAnimation, setHitAnimation] = useState(false)
   let animationDirection = right ? 'animate-wiggleLeft' : 'animate-wiggle'
+
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const Vegetable = ({ data, select, right }) => {
     setTimeout(() => {
       setColor('')
       setHitAnimation(false)
-    }, 500)
+    }, 200)
   }, [data])
 
   if (!data) {
@@ -49,15 +51,15 @@ const Vegetable = ({ data, select, right }) => {
 
   return (
     <div>
-      <li className="flex animate-pulse ">
+      <li className="flex animate-pulse">
         {select && (
-          <button className="btn " onClick={() => handleSelect(data)}>
+          <button className="btn" onClick={() => handleSelect(data)}>
             select
           </button>
         )}
       </li>
       <div className="flex">
-        <div className={`${right && 'order-last '} flex flex-col  card`}>
+        <div className={`${right && 'order-last '} flex flex-col card`}>
           <PowerIcon
             icon={<AiFillHeart size="20" />}
             text="Health"
@@ -80,12 +82,8 @@ const Vegetable = ({ data, select, right }) => {
             value={data.Delay}
           />
         </div>
-        <div
-          className={`${
-            hitAnimation && animationDirection
-          } bg-green-200 mx-auto `}
-        >
-          <MovingIcon icon={<GiAxeSwing size="40" />} />
+        <div className={`${hitAnimation && animationDirection}  mx-auto `}>
+          <MovingIcon icon={<GiWoodStick size="40" />} />
         </div>
       </div>
     </div>
@@ -95,7 +93,7 @@ const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   return (
     <div
       className={`flex m-2 text-black animate-${
-        color === 'red' ? 'ping' : 'none'
+        color === 'red' ? 'ping text-red-900 scale-125' : 'none'
       }`}
     >
       {icon}
@@ -105,6 +103,6 @@ const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   )
 }
 const MovingIcon = ({ icon }) => {
-  return <div className={` mt-20`}>{icon}</div>
+  return <div className={`mt-20`}>{icon}</div>
 }
 export default Vegetable
