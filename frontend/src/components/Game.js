@@ -30,7 +30,9 @@ const Game = ({ game }) => {
 
   return (
     <div>
-      <div className="flex flex-row justify-around mb-12">
+      <div className="container mx-auto p-6 grid gap-12 grid-cols-2">
+        <span className="font-bold">{game.player1?.Name}</span>
+        <span className="font-bold ">{game.player2?.Name}</span>
         <Vegetable data={game.player1} />
         <Vegetable data={game.player2} />
       </div>

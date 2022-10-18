@@ -29,7 +29,7 @@ function App() {
           start
         </button>
       </div>
-      <Higscores />
+      {/* <Higscores /> */}
     </div>
   )
 }

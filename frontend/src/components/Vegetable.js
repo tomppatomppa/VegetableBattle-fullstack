@@ -4,6 +4,11 @@ import { useDispatch } from 'react-redux'
 import { createNotification } from '../reducers/notificationReducer'
 import { useEffect, useState } from 'react'
 
+import { GiBroadsword } from 'react-icons/gi'
+import { AiFillHeart } from 'react-icons/ai'
+import { BsFillShieldFill } from 'react-icons/bs'
+import { GiAxeSwing } from 'react-icons/gi'
+
 const Vegetable = ({ data, select }) => {
   const highscores = useSelector((state) => state.highscores)
 
@@ -24,7 +29,6 @@ const Vegetable = ({ data, select }) => {
   const found = [...highscores].find(
     (vegetable) => vegetable.name === data.Name
   )
-
   const notify = (message, type = 'info') => {
     dispatch(createNotification({ message, type }, 4))
   }
@@ -44,21 +48,47 @@ const Vegetable = ({ data, select }) => {
   }
 
   return (
-    <div>
-      <ul className="text-left">
-        <li className="font-bold">
-          {data.Name}
-          {select && <button onClick={() => handleSelect(data)}>select</button>}
-        </li>
-        <li>
-          Health: <span style={{ background: color }}>{data.Health}</span>{' '}
-        </li>
-        <li>Attack: {data.Attack}</li>
-        <li>Defence: {data.Defence}</li>
-        <li>Delay: {data.Delay}</li>
-      </ul>
+    <ul className="text-left">
+      <li className=" flex justify-end ">
+        {select && (
+          <button className="btn" onClick={() => handleSelect(data)}>
+            select
+          </button>
+        )}
+      </li>
+      <div className="flex flex-col card">
+        <PowerIcon
+          icon={<AiFillHeart size="20" />}
+          text="Health"
+          value={data.Health}
+          color={color}
+        />
+        <PowerIcon
+          icon={<GiBroadsword size="20" />}
+          text="Attack"
+          value={data.Attack}
+        />
+        <PowerIcon
+          icon={<BsFillShieldFill size="20" />}
+          text="Defence"
+          value={data.Defence}
+        />
+        <PowerIcon
+          icon={<GiAxeSwing size="20" />}
+          text="Delay"
+          value={data.Delay}
+        />
+      </div>
+    </ul>
+  )
+}
+const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
+  return (
+    <div className={`flex m-2 text-${color}-900`}>
+      {icon}
+      {text}
+      <span> {`:  ${value}`}</span>
     </div>
   )
 }
-
 export default Vegetable
