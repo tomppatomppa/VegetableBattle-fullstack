@@ -18,14 +18,12 @@ export const calculateStats = ({
   return stats
 }
 
-export const attack = (power) => {
+export const attack = (power, defence) => {
   const ran = Math.floor(Math.random() * power) + power / 3
-  const damage = ((ran * 3) / 2).toFixed(0)
-  return damage > 0 ? damage : 1
+  const damage = ((ran * 3) / 2).toFixed(0) - (defence * 3).toFixed(0)
+  return damage > 0 ? damage.toFixed(0) : 1
 }
-export const defence = (value) => {
-  return (value * 3).toFixed(0)
-}
+
 export const isFinished = (player1, player2) => {
   if (player1.Health <= 0 || player2.Health <= 0) {
     return true

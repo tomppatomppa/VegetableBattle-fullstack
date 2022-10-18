@@ -62,7 +62,7 @@ export const useGameState = () => {
     return true
   }
   const fight = (attacker, defender) => {
-    const hit = attack(attacker.Attack) - defence(defender.Defence)
+    const hit = attack(attacker.Attack, defender.Defence)
     let health = defender.Health - hit
     const updatedPlayer = {
       ...defender,
