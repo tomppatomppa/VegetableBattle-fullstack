@@ -25,17 +25,20 @@ const Vegetables = ({ select }) => {
 
   return (
     <div>
-      <input onChange={(e) => setFilter(e.target.value)}></input>
-      <div>
-        {vegetables.map((vegetable) => (
-          <Togglable
-            key={vegetable.id}
-            buttonLabel="show stats"
-            name={vegetable.name.fi}
-          >
-            <Vegetable data={calculateStats(vegetable)} select={select} />
-          </Togglable>
-        ))}
+      <span>Select Player </span>
+      <input
+        className="input"
+        onChange={(e) => setFilter(e.target.value)}
+      ></input>
+      <div className="bg-blue-200 w-72 absolute">
+        {filter &&
+          vegetables.map((vegetable) => (
+            <div key={vegetable.id} className="text-xs">
+              <Togglable buttonLabel="show stats" name={vegetable.name.fi}>
+                <Vegetable data={calculateStats(vegetable)} select={select} />
+              </Togglable>
+            </div>
+          ))}
       </div>
     </div>
   )

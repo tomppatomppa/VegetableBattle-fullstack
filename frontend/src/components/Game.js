@@ -30,10 +30,12 @@ const Game = ({ game }) => {
 
   return (
     <div>
-      <Vegetable data={game.player1} />
-      <Vegetable data={game.player2} />
+      <div className="flex flex-row justify-around mb-12">
+        <Vegetable data={game.player1} />
+        <Vegetable data={game.player2} />
+      </div>
       {status.slice(-4).map((item) => (
-        <h6 style={{ margin: 0 }} key={item}>
+        <h6 className="text-sm" key={item}>
           {item}
         </h6>
       ))}

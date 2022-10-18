@@ -14,7 +14,9 @@ export const calculateStats = ({
     Attack: parse(carbohydrate),
     Defence: parse(protein),
     Delay: parse(fat + carbohydrate + protein),
+    NameEN: name.en,
   }
+
   return stats
 }
 

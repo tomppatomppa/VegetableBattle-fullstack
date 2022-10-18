@@ -6,6 +6,7 @@ import { useEffect, useState } from 'react'
 
 const Vegetable = ({ data, select }) => {
   const highscores = useSelector((state) => state.highscores)
+
   const [color, setColor] = useState('')
 
   const dispatch = useDispatch()
@@ -44,9 +45,9 @@ const Vegetable = ({ data, select }) => {
 
   return (
     <div>
-      <ul>
-        <li>
-          Name: {data.Name}{' '}
+      <ul className="text-left">
+        <li className="font-bold">
+          {data.Name}
           {select && <button onClick={() => handleSelect(data)}>select</button>}
         </li>
         <li>

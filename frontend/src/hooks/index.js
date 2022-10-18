@@ -1,10 +1,13 @@
 import { useEffect, useState } from 'react'
-import { attack, defence, isFinished, msToTime } from '../utils/helpers'
+import { attack, isFinished, msToTime } from '../utils/helpers'
+
 import { useDispatch } from 'react-redux'
 import { updateHighscore } from '../reducers/highscoreReducer'
 import { createStatus, setStatusTo } from '../reducers/statusReducer'
+
 import punchSound from '../assets/soundFX/hit.mp3'
 import countdownSound from '../assets/soundFX/countdown.mp3'
+
 export const useGameState = () => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
