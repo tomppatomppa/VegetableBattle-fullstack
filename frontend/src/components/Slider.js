@@ -20,12 +20,12 @@ const Slider = forwardRef((props, refs) => {
           onClick={() => setIsOpen(!isOpen)}
         >
           <svg fill="#2563EB" viewBox="0 0 100 80" width="40" height="40"></svg>
-          Highscore
+          HIGHSCORES
         </button>
       ) : (
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="text-xl text-white fixed top-4 right-4 z-10"
+          className="text-xl text-black fixed top-4 right-4 z-10"
         >
           X
         </button>

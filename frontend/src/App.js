@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useRef } from 'react'
 import './App.css'
 import Game from './components/Game'
 import Higscores from './components/Higscores'
@@ -17,7 +17,7 @@ function App() {
       <Slider ref={highscoreRef}>
         <Higscores latestWinner={game.latestWinner} />
       </Slider>
-      <div className="h-screen mt-12 mx-auto ">
+      <div className="h-screen mt-12 mx-auto">
         <span className="font-bold ">Vihannes battle</span>
         <Notification />
         <div className="flex flex-row  justify-around">
