@@ -7,7 +7,7 @@ const Notification = () => {
     return null
   }
   const style = {
-    background: notification.type === 'alert' ? 'red' : 'green',
+    background: notification.type === 'alert' ? 'indianred' : 'lightgreen',
   }
   return <div style={style}>{notification.message}</div>
 }

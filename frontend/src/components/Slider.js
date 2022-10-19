@@ -6,6 +6,7 @@ const Slider = forwardRef((props, refs) => {
   const toggleVisibility = () => {
     setIsOpen(!isOpen)
   }
+
   useImperativeHandle(refs, () => {
     return {
       toggleVisibility,
@@ -26,7 +27,7 @@ const Slider = forwardRef((props, refs) => {
           onClick={() => setIsOpen(!isOpen)}
           className="text-xl text-white fixed top-4 right-4 z-10"
         >
-          x
+          X
         </button>
       )}
       <div
