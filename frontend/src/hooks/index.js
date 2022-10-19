@@ -8,11 +8,12 @@ import { createStatus, setStatusTo } from '../reducers/statusReducer'
 import punchSound from '../assets/soundFX/hit.mp3'
 import countdownSound from '../assets/soundFX/countdown.mp3'
 
-export const useGameState = () => {
+export const useGameState = (ref) => {
   const [isOn, setIsOn] = useState(false)
   const [player1, setPlayer1] = useState(null)
   const [player2, setPlayer2] = useState(null)
   const [startDate, setStartDate] = useState(null)
+  const [latestWinner, setLatestWinner] = useState(null)
   let punch = new Audio(punchSound)
   let count = new Audio(countdownSound)
 
@@ -29,7 +30,9 @@ export const useGameState = () => {
           player1.Health < player2.Health ? player2.Name : player1.Name
         const loser = player1.Name === winner ? player2.Name : player1.Name
         saveResult(winner, loser)
+        setLatestWinner(winner)
         reset()
+        ref.current.toggleVisibility()
       }
     }
   }, [player1, player2])
@@ -44,6 +47,7 @@ export const useGameState = () => {
       console.log('Choose Both players')
       return
     }
+    setLatestWinner(null)
     dispatch(setStatusTo([]))
     countdown(3, setIsOn, setStartDate)
     count.play()
@@ -112,5 +116,6 @@ export const useGameState = () => {
     startDate,
     addPlayer,
     fight,
+    latestWinner,
   }
 }

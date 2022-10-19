@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import Togglable from './Togglable'
 import { initializeHighscores } from '../reducers/highscoreReducer'
 
-const Higscores = () => {
+const Higscores = ({ latestWinner }) => {
   const highscores = useSelector((state) =>
     state.highscores.filter((h) => h.wins || h.losses !== 0)
   )
@@ -16,18 +16,29 @@ const Higscores = () => {
   }, [dispatch])
 
   return (
-    <div className="bg-red-200 mx-auto  w-1/3 ">
-      <h1 className="font-bold">Highscores</h1>
-      <div className="text-sm text-right bg-blue-100  ">
+    <div className=" h-full overflow-auto ">
+      <h1 className="font-bold">HIGHSCORES</h1>
+      <ul>
         {sorted.map((item) => (
-          <div className="" key={item.id}>
+          <div
+            className={`${
+              latestWinner === item.name ? 'bg-green-200 animate-pulse' : ''
+            } rounded-sm mb-1 text-right p-1 hover:bg-blue-300 border border-gray-300`}
+            key={item.id}
+          >
             <Togglable name={`${item.name} ${item.wins}`} buttonLabel="Details">
-              {item.name} {'Battles Won: '} {item.wins}
-              {'Battles Lost: '} {item.losses}
+              <ul>
+                <div>
+                  {'Battles Won: '} {item.wins}
+                </div>
+                <div>
+                  {'Battles Lost: '} {item.losses}
+                </div>
+              </ul>
             </Togglable>
           </div>
         ))}
-      </div>
+      </ul>
     </div>
   )
 }
