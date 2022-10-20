@@ -36,7 +36,7 @@ const Game = ({ game }) => {
         <span className="font-bold">{game.player1?.Name.split(',', 1)}</span>
         <span className="font-bold ">{game.player2?.Name.split(',', 1)}</span>
         <Vegetable data={game.player1} />
-        <Vegetable data={game.player2} right={true} />
+        <Vegetable data={game.player2} rightSide={true} />
       </div>
       <div className=" mx-auto justify-center max-w-lg">
         {rev.slice(0, 4).map((item, index) => (

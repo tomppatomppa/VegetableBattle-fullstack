@@ -10,11 +10,14 @@ import { BsFillShieldFill } from 'react-icons/bs'
 import { GiAxeSwing } from 'react-icons/gi'
 import { GiWoodStick } from 'react-icons/gi'
 
-const Vegetable = ({ data, select, right }) => {
+{
+  /* rightSide variable reverses flex container */
+}
+const Vegetable = ({ data, select, rightSide }) => {
   const highscores = useSelector((state) => state.highscores)
   const [color, setColor] = useState('')
   const [hitAnimation, setHitAnimation] = useState(false)
-  let animationDirection = right ? 'animate-wiggleLeft' : 'animate-wiggle'
+  let animationDirection = rightSide ? 'animate-wiggleLeft' : 'animate-wiggle'
 
   const dispatch = useDispatch()
 
@@ -30,6 +33,10 @@ const Vegetable = ({ data, select, right }) => {
   if (!data) {
     return null
   }
+
+  /*
+  check if vegetable already exists in highscores 
+  */
   const found = [...highscores].find(
     (vegetable) => vegetable.name === data.Name
   )
@@ -46,7 +53,7 @@ const Vegetable = ({ data, select, right }) => {
     if (!found) {
       dispatch(createHighscore(data.Name))
     }
-    notify(`Vegetable name ${data.Name} joined!`)
+    notify(`Vegetable named ${data.Name} joined!`)
   }
 
   return (
@@ -59,7 +66,7 @@ const Vegetable = ({ data, select, right }) => {
         )}
       </li>
       <div className="flex">
-        <div className={`${right && 'order-last '} flex flex-col card`}>
+        <div className={`${rightSide && 'order-last '} flex flex-col card`}>
           <PowerIcon
             icon={<AiFillHeart size="20" />}
             text="Health"
