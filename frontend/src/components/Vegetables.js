@@ -1,27 +1,24 @@
-import axios from 'axios'
-import { useState, useEffect } from 'react'
-import { calculateStats } from '../utils/helpers'
-import Togglable from './Togglable'
-import Vegetable from './Vegetable'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+import { calculateStats, filterArray } from '../utils/helpers';
+import Togglable from './Togglable';
+import Vegetable from './Vegetable';
 
 const Vegetables = ({ select }) => {
-  const [vegetables, setVegetables] = useState([])
-  const [filter, setFilter] = useState('')
+  const [vegetables, setVegetables] = useState([]);
+  const [filter, setFilter] = useState('');
 
   useEffect(() => {
     const search = async () => {
-      const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`
+      const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`;
       axios.get(url).then(({ data }) => {
-        const filter = data.filter(
-          (item) => item.type.abbreviation.fi === 'Raaka-aine'
-        )
-        setVegetables([...filter])
-      })
-    }
+        setVegetables([...filterArray(data)]);
+      });
+    };
     if (filter) {
-      search()
+      search();
     }
-  }, [filter])
+  }, [filter]);
 
   return (
     <div>
@@ -41,7 +38,7 @@ const Vegetables = ({ select }) => {
           ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Vegetables
+export default Vegetables;

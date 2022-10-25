@@ -1,19 +1,19 @@
-import { useRef, useState } from 'react'
-import Game from './components/Game'
-import Higscores from './components/Higscores'
-import Notification from './components/Notification'
-import Slider from './components/Slider'
+import { useRef, useState } from 'react';
+import Game from './components/Game';
+import Higscores from './components/Higscores';
+import Notification from './components/Notification';
+import Slider from './components/Slider';
 
-import Vegetables from './components/Vegetables'
-import { useGameState } from './hooks'
+import Vegetables from './components/Vegetables';
+import { useGameState } from './hooks';
 
-import { MdMusicNote } from 'react-icons/md'
-import { MdMusicOff } from 'react-icons/md'
-import music from './assets/soundFX/Supera.mp3'
+import { MdMusicNote } from 'react-icons/md';
+import { MdMusicOff } from 'react-icons/md';
+import music from './assets/soundFX/Supera.mp3';
 
 function App() {
-  const highscoreRef = useRef()
-  const game = useGameState(highscoreRef)
+  const highscoreRef = useRef();
+  const game = useGameState(highscoreRef);
 
   return (
     <div className="App flex flex-col justify-between">
@@ -47,18 +47,18 @@ function App() {
         audioSource={music}
       />
     </div>
-  )
+  );
 }
 
 const MusicPlayer = ({ onIcon, offIcon, audioSource }) => {
-  const [status, setStatus] = useState({ isPlaying: false })
-  const musicRef = useRef(null)
+  const [status, setStatus] = useState({ isPlaying: false });
+  const musicRef = useRef(null);
 
   const toggleAudio = () => {
     status.isPlaying === false
       ? musicRef.current.play()
-      : musicRef.current.pause()
-  }
+      : musicRef.current.pause();
+  };
 
   return (
     <div
@@ -73,7 +73,7 @@ const MusicPlayer = ({ onIcon, offIcon, audioSource }) => {
         onPause={() => setStatus({ isPlaying: false })}
       ></audio>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
