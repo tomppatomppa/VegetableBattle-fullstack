@@ -3,22 +3,14 @@ import { useState, useEffect } from 'react';
 import { calculateStats, filterArray } from '../utils/helpers';
 import Togglable from './Togglable';
 import Vegetable from './Vegetable';
-
+import vegetableService from '../services/vegetables';
 const Vegetables = ({ select }) => {
   const [vegetables, setVegetables] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`;
-    let config = {
-      headers: {
-        'Access-Control-Allow-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': 'http://localhost:3001',
-        'Access-Control-Allow-Methods': 'GET',
-      },
-    };
     const search = async () => {
-      axios.get(url, { config }).then(({ data }) => {
+      vegetableService.findVegetable(filter).then(({ data }) => {
         setVegetables([...filterArray(data)]);
       });
     };
