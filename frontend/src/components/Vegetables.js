@@ -9,9 +9,16 @@ const Vegetables = ({ select }) => {
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
+    const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`;
+    let config = {
+      headers: {
+        'Access-Control-Allow-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': 'http://localhost:3001',
+        'Access-Control-Allow-Methods': 'GET',
+      },
+    };
     const search = async () => {
-      const url = `https://fineli.fi/fineli/api/v1/foods?q=${filter}`;
-      axios.get(url).then(({ data }) => {
+      axios.get(url, { config }).then(({ data }) => {
         setVegetables([...filterArray(data)]);
       });
     };
