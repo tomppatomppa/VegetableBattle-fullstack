@@ -5,7 +5,8 @@ const mongoose = require('mongoose');
 require('dotenv').config();
 
 const fighterRouter = require('./controllers/fighter');
-const vegetableService = require('./controllers/vegetables');
+const fineliService = require('./controllers/fineli');
+
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
@@ -20,6 +21,6 @@ app.use(express.static('build'));
 app.use(express.json());
 
 app.use('/api/fighters', fighterRouter);
-app.use('/api/vegetables', vegetableService);
+app.use('/api/fineli', fineliService);
 
 module.exports = app;

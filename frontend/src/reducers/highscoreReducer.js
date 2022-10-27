@@ -36,6 +36,7 @@ export const createHighscore = (newHighscore) => {
 export const initializeHighscores = () => {
   return async (dispatch) => {
     const highscores = await fighterService.getAll();
+
     dispatch(setHighscores(highscores));
   };
 };

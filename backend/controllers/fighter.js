@@ -1,54 +1,47 @@
-const router = require('express').Router()
-const Fighter = require('../models/Fighter')
+const router = require('express').Router();
+const Fighter = require('../models/Fighter');
 
 router.get('/', async (request, response) => {
-  const fighters = await Fighter.find({})
-
-  response.json(fighters)
-})
+  const fighters = await Fighter.find({});
+  response.json(fighters);
+});
 
 router.post('/', async (request, response) => {
-  const { name } = request.body
+  const { name } = request.body;
   if (!name) {
     return response.status(400).json({
       error: 'invalid Username',
-    })
+    });
   }
-  const existingFighter = await Fighter.findOne({ name })
+  const existingFighter = await Fighter.findOne({ name });
+
   if (existingFighter) {
     return response.status(400).json({
-      error: 'Already Exists',
-    })
+      error: 'Fighter already Exists',
+    });
   }
   const fighter = new Fighter({
     name,
     wins: 0,
-    ties: 0,
     losses: 0,
-    status: 'AVAILABLE',
-  })
-  const savedFighter = await fighter.save()
-  response.status(201).json(savedFighter)
-})
+  });
+  const savedFighter = await fighter.save();
+  response.status(201).json(savedFighter);
+});
 
 router.put('/', async (request, response) => {
-  const { name, wins, status } = request.body
-  let updateScore
+  const { name, wins } = request.body;
+  let didLoseOrWin = wins ? 'wins' : 'losses';
 
-  if (wins) {
-    updateScore = 'wins'
-  } else if (!wins) {
-    updateScore = 'losses'
-  }
   const fighter = await Fighter.findOneAndUpdate(
     { name },
-    { $inc: { [updateScore]: 1 }, $set: { status: status } },
+    { $inc: { [didLoseOrWin]: 1 } },
     {
       new: true,
       runValidators: true,
       context: 'query',
     }
-  )
-  response.json(fighter)
-})
-module.exports = router
+  );
+  response.json(fighter);
+});
+module.exports = router;
