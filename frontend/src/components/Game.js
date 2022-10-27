@@ -1,34 +1,34 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import Vegetable from './Vegetable'
+import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import Vegetable from './Vegetable';
 
 const Game = ({ game }) => {
-  const status = useSelector((state) => state.status)
-  const rev = [...status].reverse()
+  const status = useSelector((state) => state.status);
+  const rev = [...status].reverse();
 
   useEffect(() => {
-    let player1Timer = null
+    let player1Timer = null;
     if (game.isOn) {
       player1Timer = setTimeout(() => {
-        game.fight(game.player1, game.player2)
-      }, (1000 * game.player1.Delay) / 2)
+        game.fight(game.player1, game.player2);
+      }, (1000 * game.player1.Delay) / 2);
     }
     return () => {
-      clearTimeout(player1Timer)
-    }
-  }, [game.player2, game.isOn])
+      clearTimeout(player1Timer);
+    };
+  }, [game.player2, game.isOn]);
 
   useEffect(() => {
-    let player2Timer = null
+    let player2Timer = null;
     if (game.isOn) {
       player2Timer = setTimeout(() => {
-        game.fight(game.player2, game.player1)
-      }, (1000 * game.player2.Delay) / 2)
+        game.fight(game.player2, game.player1);
+      }, (1000 * game.player2.Delay) / 2);
     }
     return () => {
-      clearTimeout(player2Timer)
-    }
-  }, [game.player1, game.isOn])
+      clearTimeout(player2Timer);
+    };
+  }, [game.player1, game.isOn]);
 
   return (
     <div>
@@ -49,7 +49,7 @@ const Game = ({ game }) => {
         ))}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Game
+export default Game;

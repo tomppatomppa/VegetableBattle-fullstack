@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useState, useEffect } from 'react';
 import { calculateStats, filterArray } from '../utils/helpers';
 import Togglable from './Togglable';
