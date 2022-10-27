@@ -10,7 +10,7 @@ router.post('/', async (request, response) => {
   const { name } = request.body;
   if (!name) {
     return response.status(400).json({
-      error: 'invalid Username',
+      error: 'invalid vegetable',
     });
   }
   const existingVegetable = await Vegetable.findOne({ name });
@@ -44,4 +44,5 @@ router.put('/', async (request, response) => {
   );
   response.json(vegetable);
 });
+
 module.exports = router;

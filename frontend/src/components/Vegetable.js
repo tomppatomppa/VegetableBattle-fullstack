@@ -97,7 +97,7 @@ const Vegetable = ({ data, select, rightSide }) => {
 const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   return (
     <div
-      className={`flex m-2 text-black animate-${
+      className={`flex sm:m-2 text-black animate-${
         color === 'red' ? 'ping text-red-900 scale-125' : 'none'
       }`}
     >

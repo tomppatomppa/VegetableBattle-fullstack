@@ -1,23 +1,23 @@
-import { useEffect, useState } from 'react'
-import { attack, isFinished, msToTime } from '../utils/helpers'
+import { useEffect, useState } from 'react';
+import { attack, isFinished, msToTime } from '../utils/helpers';
 
-import { useDispatch } from 'react-redux'
-import { updateHighscore } from '../reducers/highscoreReducer'
-import { createStatus, setStatusTo } from '../reducers/statusReducer'
-
-import punchSound from '../assets/soundFX/hit.mp3'
-import countdownSound from '../assets/soundFX/countdown.mp3'
+import { useDispatch } from 'react-redux';
+import { updateHighscore } from '../reducers/highscoreReducer';
+import { createStatus, setStatusTo } from '../reducers/statusReducer';
+import { createNotification } from '../reducers/notificationReducer';
+import punchSound from '../assets/soundFX/hit.mp3';
+import countdownSound from '../assets/soundFX/countdown.mp3';
 
 export const useGameState = (ref) => {
-  const [isOn, setIsOn] = useState(false)
-  const [player1, setPlayer1] = useState(null)
-  const [player2, setPlayer2] = useState(null)
-  const [startDate, setStartDate] = useState(null)
-  const [latestWinner, setLatestWinner] = useState(null)
-  let punch = new Audio(punchSound)
-  let count = new Audio(countdownSound)
+  const [isOn, setIsOn] = useState(false);
+  const [player1, setPlayer1] = useState(null);
+  const [player2, setPlayer2] = useState(null);
+  const [startDate, setStartDate] = useState(null);
+  const [latestWinner, setLatestWinner] = useState(null);
+  let punch = new Audio(punchSound);
+  let count = new Audio(countdownSound);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   /*
   # check if game ended 
@@ -27,62 +27,64 @@ export const useGameState = (ref) => {
     if (player1 && player2) {
       if (isFinished(player1, player2)) {
         const winner =
-          player1.Health < player2.Health ? player2.Name : player1.Name
-        const loser = player1.Name === winner ? player2.Name : player1.Name
-        saveResult(winner, loser)
-        setLatestWinner(winner)
-        reset()
-        ref.current.toggleVisibility()
+          player1.Health < player2.Health ? player2.Name : player1.Name;
+        const loser = player1.Name === winner ? player2.Name : player1.Name;
+        saveResult(winner, loser);
+        setLatestWinner(winner);
+        reset();
+        ref.current.toggleVisibility();
       }
     }
-  }, [player1, player2])
+  }, [player1, player2]);
 
   const saveResult = async (winner, loser) => {
-    dispatch(createStatus(`Winner is ${winner}`))
-    dispatch(updateHighscore({ name: winner, wins: true }))
-    dispatch(updateHighscore({ name: loser, wins: false }))
-  }
+    dispatch(createStatus(`Winner is ${winner}`));
+    dispatch(updateHighscore({ name: winner, wins: true }));
+    dispatch(updateHighscore({ name: loser, wins: false }));
+  };
   const handleStart = () => {
     if (!player1 || !player2) {
-      console.log('Choose Both players')
-      return
+      dispatch(
+        createNotification({ message: 'Choose two players', type: 'alert' }, 4)
+      );
+      return;
     }
-    setLatestWinner(null)
-    dispatch(setStatusTo([]))
-    countdown(3, setIsOn, setStartDate)
-    count.play()
-  }
+    setLatestWinner(null);
+    dispatch(setStatusTo([]));
+    countdown(3);
+    count.play();
+  };
   const reset = () => {
-    setPlayer1(null)
-    setPlayer2(null)
-    setStartDate(null)
-    setIsOn(false)
-  }
+    setPlayer1(null);
+    setPlayer2(null);
+    setStartDate(null);
+    setIsOn(false);
+  };
   const addPlayer = (player) => {
     if (!player1) {
-      setPlayer1(player)
+      setPlayer1(player);
     } else if (player.Name === player1.Name) {
-      return false
+      return false;
     } else {
-      setPlayer2(player)
+      setPlayer2(player);
     }
-    return true
-  }
+    return true;
+  };
   const fight = (attacker, defender) => {
-    const hit = attack(attacker.Attack, defender.Defence)
-    let health = defender.Health - hit
+    const hit = attack(attacker.Attack, defender.Defence);
+    let health = defender.Health - hit;
     const updatedPlayer = {
       ...defender,
       Health: health,
-    }
+    };
     if (attacker.Name === player1.Name) {
-      setPlayer2(() => updatedPlayer)
+      setPlayer2(() => updatedPlayer);
     } else {
-      setPlayer1(() => updatedPlayer)
+      setPlayer1(() => updatedPlayer);
     }
-    punch.play()
-    statusUpdate(attacker, defender, hit, health)
-  }
+    punch.play();
+    statusUpdate(attacker, defender, hit, health);
+  };
   const statusUpdate = (attacker, defender, hit, health) => {
     dispatch(
       createStatus(
@@ -90,22 +92,22 @@ export const useGameState = (ref) => {
           defender.Name
         } for ${hit} damage, ${defender.Name} has ${health} health left`
       )
-    )
-  }
+    );
+  };
   const countdown = (count) => {
-    let timeLeft = count + 1
+    let timeLeft = count + 1;
     let timer = setInterval(() => {
       if (timeLeft <= 1) {
-        clearInterval(timer)
-        setIsOn(true)
-        setStartDate(Date.now())
+        clearInterval(timer);
+        setIsOn(true);
+        setStartDate(Date.now());
       } else {
-        timeLeft--
-        dispatch(createStatus(timeLeft))
-        return timeLeft
+        timeLeft--;
+        dispatch(createStatus(timeLeft));
+        return timeLeft;
       }
-    }, 1000)
-  }
+    }, 1000);
+  };
   return {
     isOn,
     setIsOn,
@@ -117,5 +119,5 @@ export const useGameState = (ref) => {
     addPlayer,
     fight,
     latestWinner,
-  }
-}
+  };
+};

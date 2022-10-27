@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux';
 import Vegetable from './Vegetable';
 
 const Game = ({ game }) => {
-  const status = useSelector((state) => state.status);
-  const rev = [...status].reverse();
+  const gameStatus = useSelector((state) => state.status);
+  const reverseStatus = [...gameStatus].reverse();
 
   useEffect(() => {
     let player1Timer = null;
@@ -32,14 +32,14 @@ const Game = ({ game }) => {
 
   return (
     <div>
-      <div className="container mx-auto p-6 grid gap-12  grid-cols-2 ">
-        <span className="font-bold">{game.player1?.Name.split(',', 1)}</span>
-        <span className="font-bold ">{game.player2?.Name.split(',', 1)}</span>
+      <div className="container mx-auto sm:p-6 grid sm:gap-12  grid-cols-2 ">
+        <span className="font-bold">{game.player1?.Name}</span>
+        <span className="font-bold ">{game.player2?.Name}</span>
         <Vegetable data={game.player1} />
         <Vegetable data={game.player2} rightSide={true} />
       </div>
-      <div className=" mx-auto justify-center max-w-lg">
-        {rev.slice(0, 4).map((item, index) => (
+      <div className="mx-auto justify-center max-w-lg">
+        {reverseStatus.slice(0, 4).map((item, index) => (
           <h6
             className={`text-sm ${index === 0 ? 'font-bold text-lg' : ''}`}
             key={item}

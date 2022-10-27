@@ -1,17 +1,18 @@
-import React, { useState, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, forwardRef, useImperativeHandle } from 'react';
 
 const Slider = forwardRef((props, refs) => {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(false);
 
   const toggleVisibility = () => {
-    setIsOpen(!isOpen)
-  }
+    setIsOpen(!isOpen);
+  };
 
   useImperativeHandle(refs, () => {
     return {
       toggleVisibility,
-    }
-  })
+    };
+  });
+
   return (
     <>
       {!isOpen ? (
@@ -31,14 +32,14 @@ const Slider = forwardRef((props, refs) => {
         </button>
       )}
       <div
-        className={`top-0 right-0 fixed bg-blue-400 text-gray-900 w-[35vw] h-full p-4 ${
+        className={`top-0 right-0 fixed bg-blue-400 text-gray-900 sm:w-[35vw] h-full p-4 ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         } ease-in-out duration-300`}
       >
         {props.children}
       </div>
     </>
-  )
-})
+  );
+});
 
-export default Slider
+export default Slider;

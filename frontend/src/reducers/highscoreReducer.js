@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import fighterService from '../services/fighters';
+import vegetableService from '../services/vegetables';
 
 const highscoreSlice = createSlice({
   name: 'highscores',
@@ -22,20 +22,20 @@ export const { setHighscores, appendHighscore, setHighscore } =
 
 export const updateHighscore = (highscore) => {
   return async (dispatch) => {
-    const updatedAnecdote = await fighterService.updateStats(highscore);
+    const updatedAnecdote = await vegetableService.updateStats(highscore);
     dispatch(setHighscore(updatedAnecdote));
   };
 };
 
 export const createHighscore = (newHighscore) => {
   return async (dispatch) => {
-    const createdVegetable = await fighterService.create(newHighscore);
+    const createdVegetable = await vegetableService.create(newHighscore);
     dispatch(appendHighscore(createdVegetable));
   };
 };
 export const initializeHighscores = () => {
   return async (dispatch) => {
-    const highscores = await fighterService.getAll();
+    const highscores = await vegetableService.getAll();
 
     dispatch(setHighscores(highscores));
   };

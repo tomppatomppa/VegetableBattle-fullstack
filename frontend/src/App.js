@@ -24,7 +24,7 @@ function App() {
       <div className="h-screen mt-12 mx-auto">
         <span className="font-bold ">VIHANNES BATTLE</span>
         <Notification />
-        <div className="flex flex-row  justify-around">
+        <div className="flex flex-row justify-around">
           <div>
             {game.player1 ? null : <Vegetables select={game.addPlayer} />}
           </div>

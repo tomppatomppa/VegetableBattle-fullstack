@@ -7,12 +7,12 @@
     @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500;
   }
   .App {
-    @apply text-center font-mono  bg-cover bg-hero p-4;
+    @apply text-center font-mono  bg-cover bg-hero md:p-4;
   }
   .btn {
     @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-md m-2;
   }
   .card {
-    @apply border-solid border-2 p-4 border-indigo-600 rounded-lg mb-2;
+    @apply border-solid sm:border-2 md:p-4 border-indigo-600 rounded-lg mb-2;
   }
 }

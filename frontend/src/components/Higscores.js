@@ -1,22 +1,22 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import Togglable from './Togglable'
-import { initializeHighscores } from '../reducers/highscoreReducer'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import Togglable from './Togglable';
+import { initializeHighscores } from '../reducers/highscoreReducer';
 
 const Higscores = ({ latestWinner }) => {
   const highscores = useSelector((state) =>
     state.highscores.filter((h) => h.wins || h.losses !== 0)
-  )
-  const sorted = [...highscores].sort((a, b) => b.wins - a.wins)
+  );
+  const sorted = [...highscores].sort((a, b) => b.wins - a.wins);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(initializeHighscores())
-  }, [dispatch])
+    dispatch(initializeHighscores());
+  }, [dispatch]);
 
   return (
-    <div className=" h-full overflow-auto ">
+    <div className="h-full overflow-auto ">
       <h1 className="font-bold">HIGHSCORES</h1>
       <ul>
         {sorted.map((item) => (
@@ -40,7 +40,7 @@ const Higscores = ({ latestWinner }) => {
         ))}
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default Higscores
+export default Higscores;
