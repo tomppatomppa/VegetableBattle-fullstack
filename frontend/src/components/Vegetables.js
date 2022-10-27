@@ -2,14 +2,15 @@ import { useState, useEffect } from 'react';
 import { calculateStats, filterArray } from '../utils/helpers';
 import Togglable from './Togglable';
 import Vegetable from './Vegetable';
-import vegetableService from '../services/vegetables';
+import fineliService from '../services/fineli';
+
 const Vegetables = ({ select }) => {
   const [vegetables, setVegetables] = useState([]);
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
     const search = async () => {
-      vegetableService.findVegetable(filter).then(({ data }) => {
+      fineliService.findVegetable(filter).then(({ data }) => {
         setVegetables([...filterArray(data)]);
       });
     };

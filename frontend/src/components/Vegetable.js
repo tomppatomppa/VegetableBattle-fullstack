@@ -1,37 +1,35 @@
-import { createHighscore } from '../reducers/highscoreReducer'
-import { useSelector } from 'react-redux'
-import { useDispatch } from 'react-redux'
-import { createNotification } from '../reducers/notificationReducer'
-import { useEffect, useState } from 'react'
+import { createHighscore } from '../reducers/highscoreReducer';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { createNotification } from '../reducers/notificationReducer';
+import { useEffect, useState } from 'react';
 
-import { GiBroadsword } from 'react-icons/gi'
-import { AiFillHeart } from 'react-icons/ai'
-import { BsFillShieldFill } from 'react-icons/bs'
-import { GiAxeSwing } from 'react-icons/gi'
-import { GiWoodStick } from 'react-icons/gi'
+import { GiBroadsword } from 'react-icons/gi';
+import { AiFillHeart } from 'react-icons/ai';
+import { BsFillShieldFill } from 'react-icons/bs';
+import { GiAxeSwing } from 'react-icons/gi';
+import { GiWoodStick } from 'react-icons/gi';
 
-{
-  /* rightSide variable reverses flex container */
-}
+/* rightSide variable reverses flex container */
 const Vegetable = ({ data, select, rightSide }) => {
-  const highscores = useSelector((state) => state.highscores)
-  const [color, setColor] = useState('')
-  const [hitAnimation, setHitAnimation] = useState(false)
-  let animationDirection = rightSide ? 'animate-wiggleLeft' : 'animate-wiggle'
+  const highscores = useSelector((state) => state.highscores);
+  const [color, setColor] = useState('');
+  const [hitAnimation, setHitAnimation] = useState(false);
+  let animationDirection = rightSide ? 'animate-wiggleLeft' : 'animate-wiggle';
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setColor('red')
-    setHitAnimation(true)
+    setColor('red');
+    setHitAnimation(true);
     setTimeout(() => {
-      setColor('')
-      setHitAnimation(false)
-    }, 200)
-  }, [data])
+      setColor('');
+      setHitAnimation(false);
+    }, 200);
+  }, [data]);
 
   if (!data) {
-    return null
+    return null;
   }
 
   /*
@@ -39,22 +37,22 @@ const Vegetable = ({ data, select, rightSide }) => {
   */
   const found = [...highscores].find(
     (vegetable) => vegetable.name === data.Name
-  )
+  );
   const notify = (message, type = 'info') => {
-    dispatch(createNotification({ message, type }, 4))
-  }
+    dispatch(createNotification({ message, type }, 4));
+  };
 
   const handleSelect = async (data) => {
     //return false if dublicate player
     if (!select(data)) {
-      notify('Cannot fight yourself', 'alert')
-      return
+      notify('Cannot fight yourself', 'alert');
+      return;
     }
     if (!found) {
-      dispatch(createHighscore(data.Name))
+      dispatch(createHighscore(data.Name));
     }
-    notify(`Vegetable named ${data.Name} joined!`)
-  }
+    notify(`Vegetable named ${data.Name} joined!`);
+  };
 
   return (
     <div>
@@ -94,8 +92,8 @@ const Vegetable = ({ data, select, rightSide }) => {
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
   return (
     <div
@@ -107,9 +105,9 @@ const PowerIcon = ({ icon, text = '', value, color = 'black' }) => {
       {`${text}:  `}
       {value}
     </div>
-  )
-}
+  );
+};
 const MovingIcon = ({ icon }) => {
-  return <div className={`mt-20`}>{icon}</div>
-}
-export default Vegetable
+  return <div className={`mt-20`}>{icon}</div>;
+};
+export default Vegetable;

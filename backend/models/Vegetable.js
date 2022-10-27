@@ -18,5 +18,5 @@ schema.set('toJSON', {
   },
 });
 
-const Fighter = mongoose.model('Fighter', schema);
-module.exports = Fighter;
+const Vegetable = mongoose.model('Vegetable', schema);
+module.exports = Vegetable;

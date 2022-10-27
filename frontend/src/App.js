@@ -1,10 +1,11 @@
-import { useRef, useState } from 'react';
 import Game from './components/Game';
 import Higscores from './components/Higscores';
 import Notification from './components/Notification';
 import Slider from './components/Slider';
 
 import Vegetables from './components/Vegetables';
+
+import { useRef, useState } from 'react';
 import { useGameState } from './hooks';
 
 import { MdMusicNote } from 'react-icons/md';

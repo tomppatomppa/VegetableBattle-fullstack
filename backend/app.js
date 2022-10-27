@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 
-const fighterRouter = require('./controllers/fighter');
+const vegetableRouter = require('./controllers/vegetable');
 const fineliService = require('./controllers/fineli');
 
 mongoose
@@ -20,7 +20,7 @@ app.use(cors());
 app.use(express.static('build'));
 app.use(express.json());
 
-app.use('/api/fighters', fighterRouter);
+app.use('/api/vegetables', vegetableRouter);
 app.use('/api/fineli', fineliService);
 
 module.exports = app;

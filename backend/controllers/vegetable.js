@@ -1,9 +1,9 @@
 const router = require('express').Router();
-const Fighter = require('../models/Fighter');
+const Vegetable = require('../models/Vegetable');
 
 router.get('/', async (request, response) => {
-  const fighters = await Fighter.find({});
-  response.json(fighters);
+  const vegetables = await Vegetable.find({});
+  response.json(vegetables);
 });
 
 router.post('/', async (request, response) => {
@@ -13,27 +13,27 @@ router.post('/', async (request, response) => {
       error: 'invalid Username',
     });
   }
-  const existingFighter = await Fighter.findOne({ name });
+  const existingVegetable = await Vegetable.findOne({ name });
 
-  if (existingFighter) {
+  if (existingVegetable) {
     return response.status(400).json({
       error: 'Fighter already Exists',
     });
   }
-  const fighter = new Fighter({
+  const vegetable = new Vegetable({
     name,
     wins: 0,
     losses: 0,
   });
-  const savedFighter = await fighter.save();
-  response.status(201).json(savedFighter);
+  const savedVegetable = await vegetable.save();
+  response.status(201).json(savedVegetable);
 });
 
 router.put('/', async (request, response) => {
   const { name, wins } = request.body;
   let didLoseOrWin = wins ? 'wins' : 'losses';
 
-  const fighter = await Fighter.findOneAndUpdate(
+  const vegetable = await Vegetable.findOneAndUpdate(
     { name },
     { $inc: { [didLoseOrWin]: 1 } },
     {
@@ -42,6 +42,6 @@ router.put('/', async (request, response) => {
       context: 'query',
     }
   );
-  response.json(fighter);
+  response.json(vegetable);
 });
 module.exports = router;

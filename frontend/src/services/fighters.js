@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'api/fighters';
+const baseUrl = 'api/vegetables';
 
 const getAll = async () => {
   const request = await axios.get(baseUrl);
