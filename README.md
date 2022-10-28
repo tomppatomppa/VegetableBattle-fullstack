@@ -7,7 +7,7 @@ The fight ends when one of the vegetables health drops to 0 or below.
 After each succesfull fight, the score is added to backend and shown on the highscore tab.  
 
 Toggle background music **On/Off** in the upperleft corner.  
-Show highscores can be seen in the upper right corner.
+Show highscores can toggled in the upper right corner.
 
 # Stats
 Stats are calculated based on nutritional value:  
