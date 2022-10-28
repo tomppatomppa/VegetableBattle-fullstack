@@ -4,7 +4,10 @@
 
 User can choose two different vegetables to fight each other, and see which one is stronger.   Each vegetable will be represented by a stick icon on the "battle arena", and their corresponding stats will be shown on the sides.  
 The fight ends when one of the vegetables health drops to 0 or below.  
-After each succesfull fight, the score is added to backend and shown on the highscore tab.
+After each succesfull fight, the score is added to backend and shown on the highscore tab.  
+
+Toggle background music **on** in the upperleft corner.  
+Show highscores can be seen in the upper right corner.
 
 # Stats
 Stats are calculated based on nutritional value:  
@@ -20,13 +23,14 @@ Stats are calculated based on nutritional value:
   There must be two vegetables fighting.  
   Refreshing the page will cause the fight/fighters to reset  
   
+ # About the development/design
+ The main focus of this
   
-  
+
 
 
 # react version 18.2.0
-
-# Frontend
+# Frontend 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 https://tailwindcss.com/ as CSS framework
