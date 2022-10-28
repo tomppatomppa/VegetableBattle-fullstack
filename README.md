@@ -48,10 +48,10 @@ Redux https://redux.js.org/
 
 # Assets used:
 
-Icons: https://react-icons.github.io/react-icons/
-SoundFX: https://pixabay.com/sound-effects/search/punch/
-Background: https://wallpapercave.com/landscape-pixel-art-wallpapers
-Background-Music: Recorded by me.
+Icons: https://react-icons.github.io/react-icons/  
+SoundFX: https://pixabay.com/sound-effects/search/punch/  
+Background: https://wallpapercave.com/landscape-pixel-art-wallpapers  
+Background-Music: Recorded by me.  
 
 ## Available Scripts for frontend
 
