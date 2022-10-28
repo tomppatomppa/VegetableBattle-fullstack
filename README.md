@@ -7,7 +7,7 @@ The fight ends when one of the vegetables health drops to 0 or below.
 After each succesfull fight, the score is added to backend and shown on the highscore tab.
 
 # Stats
-Stats are calculated based on nutritional value:
+Stats are calculated based on nutritional value:  
   Health: energyKcal    
   Attack: carbohydrate  
   Defence: protein  
