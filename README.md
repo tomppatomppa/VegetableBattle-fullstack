@@ -23,14 +23,20 @@ Stats are calculated based on nutritional value:
   There must be two vegetables fighting.  
   Refreshing the page will cause the fight/fighters to reset  
   
- # About the development/design
- The game uses a custom hook useGameState to keep track of the game state and players.  
- At the start of each battle, a current Date() object is created. This is used to keep track of when each hit "hits".  
+ # About the game
+ The game uses a custom hook useGameState to keep track of the game state and players.
+ **useGameState hook**
+ **IsOn** = represents if a game is running or not.  
+ **Player1, Player2** = current players.
+ **startDate** = At the start of each battle, a current Date() object is created. This is used to keep track of when each hit "hits".  
+ **latestWinner** = after a battle ends, this state will be set to whoever wins that battle. Highscores will show this vegetable as green.  
+ 
+ # Redux  
+ I used redux to keep track of the battle messages, notifications and fething/storing highscore data.
  
  
-  
-
-
+ 
+ 
 
 # react version 18.2.0
 # Frontend 
