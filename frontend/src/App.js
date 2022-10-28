@@ -10,7 +10,7 @@ import { useGameState } from './hooks';
 
 import { MdMusicNote } from 'react-icons/md';
 import { MdMusicOff } from 'react-icons/md';
-import music from './assets/soundFX/Supera.mp3';
+import bg_music from './assets/soundFX/vihannes_theme_LQ.mp3';
 
 function App() {
   const highscoreRef = useRef();
@@ -45,7 +45,7 @@ function App() {
       <MusicPlayer
         onIcon={<MdMusicNote size="30" />}
         offIcon={<MdMusicOff size="30" />}
-        audioSource={music}
+        audioSource={bg_music}
       />
     </div>
   );

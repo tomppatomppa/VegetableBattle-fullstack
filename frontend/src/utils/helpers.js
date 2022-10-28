@@ -62,9 +62,10 @@ export const countdown = (count, triggerStart, setStartDate) => {
 };
 
 export function filterArray(array) {
-  const filtered = array
-    .filter((i) => i.functionClass.abbreviation.fi === 'Tuoreet kasvikset')
-    .filter((item) => item.type.abbreviation.fi === 'Raaka-aine');
-
+  const filtered = array.filter(
+    (veg) =>
+      veg.functionClass.abbreviation.fi === 'Tuoreet kasvikset' &&
+      veg.type.abbreviation.fi === 'Raaka-aine'
+  );
   return filtered;
 }

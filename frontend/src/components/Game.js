@@ -32,7 +32,7 @@ const Game = ({ game }) => {
 
   return (
     <div>
-      <div className="container mx-auto sm:p-6 grid sm:gap-12  grid-cols-2 ">
+      <div className="text-xs sm:text-xl mx-auto sm:p-6 grid sm:gap-12  grid-cols-2 ">
         <span className="font-bold">{game.player1?.Name}</span>
         <span className="font-bold ">{game.player2?.Name}</span>
         <Vegetable data={game.player1} />
