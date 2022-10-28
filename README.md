@@ -24,7 +24,7 @@ Stats are calculated based on nutritional value:
   Refreshing the page will cause the fight/fighters to reset  
   
  # About the game
- The game uses a custom hook useGameState to keep track of the game state and players.
+ The game uses a custom hook useGameState to keep track of the game state and players.  
  **useGameState hook**  
  **IsOn** = represents if a game is running or not.    
  **Player1, Player2** = current players.  
