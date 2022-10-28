@@ -12,7 +12,7 @@ Stats are calculated based on nutritional value:
   Delay: fat+carbohydrate+protein -> this stat will determine the frequency of each hit
  
 # Limitations: 
-  Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow, can fight Paprika, green.\
+  Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow, can fight Paprika, green.  
 
 
 # react version 18.2.0
