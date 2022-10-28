@@ -3,14 +3,16 @@
 # Description
 
 User can choose two different vegetables to fight each other, and see which one is stronger. After each succesfull fight, the score is added to backend and show on the highscore tab.
+
+# Stats
 Stats are calculated based on nutritional value:
   Health: energyKcal
   Attack: carbohydrate
   Defence: protein
   Delay: fat+carbohydrate+protein -> this stat will determine the frequency of each hit
  
-Limitations: 
-  Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow can fight
+# Limitations: 
+  Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow, can fight Paprika, green.\
 
 
 # react version 18.2.0
