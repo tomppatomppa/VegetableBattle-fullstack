@@ -22,7 +22,7 @@ function App() {
         <Higscores latestWinner={game.latestWinner} />
       </Slider>
       <div className="h-screen mt-12 mx-auto">
-        <span className="font-bold ">VIHANNES BATTLE</span>
+        <span className="font-bold ">VEGETABLE BATTLE</span>
         <Notification />
         <div className="flex flex-row justify-around">
           <div>

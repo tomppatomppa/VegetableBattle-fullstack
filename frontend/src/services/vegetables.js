@@ -18,4 +18,5 @@ const updateStats = async (data) => {
   const response = await axios.put(baseUrl, data);
   return response.data;
 };
+// eslint-disable-next-line import/no-anonymous-default-export
 export default { getAll, create, updateStats };
