@@ -93,6 +93,8 @@ To learn React, check out the [React documentation](https://reactjs.org/).
 
 # Backend
 
+
+
 Created with Node/Express and MongoDB as database
 The app is using https://fineli.fi/fineli/fi/avoin-data for fetching vegetables(in Finnish) data
 
@@ -102,5 +104,5 @@ The app is using https://fineli.fi/fineli/fi/avoin-data for fetching vegetables(
 
 Install the project dependencies.
 
-### `npm run start`
+### `npm run start/dev`
 
