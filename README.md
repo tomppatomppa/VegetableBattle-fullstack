@@ -6,7 +6,7 @@ User can choose two different vegetables to fight each other, and see which one 
 The fight ends when one of the vegetables health drops to 0 or below.  
 After each succesfull fight, the score is added to backend and shown on the highscore tab.  
 
-Toggle background music **on** in the upperleft corner.  
+Toggle background music **On/Off** in the upperleft corner.  
 Show highscores can be seen in the upper right corner.
 
 # Stats
@@ -24,7 +24,10 @@ Stats are calculated based on nutritional value:
   Refreshing the page will cause the fight/fighters to reset  
   
  # About the development/design
- The main focus of this
+ The game uses a custom hook useGameState to keep track of the game state and players.  
+ At the start of each battle, a current Date() object is created. This is used to keep track of when each hit "hits".  
+ 
+ 
   
 
 
