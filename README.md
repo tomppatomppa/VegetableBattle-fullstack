@@ -17,7 +17,8 @@ Stats are calculated based on nutritional value:
  
 # Limitations: 
   Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow, can fight Paprika, green.  
-  There must be two vegetables fighting.
+  There must be two vegetables fighting.  
+  Refreshing the page will cause the fight/fighters to reset  
   
   
   
