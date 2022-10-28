@@ -8,10 +8,10 @@ After each succesfull fight, the score is added to backend and shown on the high
 
 # Stats
 Stats are calculated based on nutritional value:  
-  Health: energyKcal    
-  Attack: carbohydrate  
-  Defence: protein  
-  Delay: fat+carbohydrate+protein -> this stat will determine the frequency of each hit  
+  **Health**: energyKcal    
+  **Attack**: carbohydrate  
+  **Defence**: protein  
+  **Delay**: fat+carbohydrate+protein -> this stat will determine the frequency of each hit  
  
  
  
