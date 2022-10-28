@@ -2,8 +2,8 @@
 
 # Description
 
-User can choose two different vegetables to fight each other, and see which one is stronger. Each vegetable will be represented by a stick icon on the "battle arena", and their corresponding stats will be shown on the sides.  
-The fight ends when one of the vegetables health drops to 0 or below.
+User can choose two different vegetables to fight each other, and see which one is stronger.   Each vegetable will be represented by a stick icon on the "battle arena", and their corresponding stats will be shown on the sides.  
+The fight ends when one of the vegetables health drops to 0 or below.  
 After each succesfull fight, the score is added to backend and shown on the highscore tab.
 
 # Stats
