@@ -1,25 +1,33 @@
 # VegetableBattle-fullstack
 
+# Description
+
+User can choose two different vegetables to fight each other, and see which one is stronger. After each succesfull fight, the score is added to backend and show on the highscore tab.
+Stats are calculated based on nutritional value:
+  Health: energyKcal
+  Attack: carbohydrate
+  Defence: protein
+  Delay: fat+carbohydrate+protein -> this stat will determine the frequency of each hit
+ 
+Limitations: 
+  Vegetables cannot fight each other e.g a carrot cannot fight carrot. However a Paprika, yellow can fight
 
 
 # react version 18.2.0
 
 # Frontend
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 https://tailwindcss.com/ as CSS framework
 
-# Backend
-
-Created with Node/Express and MongoDB as database
-The app is using https://fineli.fi/fineli/fi/avoin-data for fetching fresh vegetables (in Finnish)
+Redux https://redux.js.org/
 
 # Assets used:
 
+Icons: https://react-icons.github.io/react-icons/
 SoundFX: https://pixabay.com/sound-effects/search/punch/
 Background: https://wallpapercave.com/landscape-pixel-art-wallpapers
 Background-Music: Recorded by me.
-
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts for frontend
 
@@ -58,4 +66,17 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 
+
+# Backend
+
+Created with Node/Express and MongoDB as database
+The app is using https://fineli.fi/fineli/fi/avoin-data for fetching vegetables(in Finnish) data
+
 ## Available Scripts for backend
+
+### `npm install`
+
+Install the project dependencies.
+
+### `npm run start`
+
